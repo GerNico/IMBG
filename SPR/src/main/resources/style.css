@@ -1,0 +1,51 @@
+.chart-title {
+ -fx-font-size: 28px;
+ }
+.axis {
+    -fx-font-size: 18px;
+    -fx-minor-tick-length: 4;
+    -fx-font-family: Tahoma;
+    -fx-tick-length: 10;
+    -fx-minor-tick-length: 5;
+}
+
+.chart-series-line {-fx-stroke-width: 1px;}
+
+.default-color2.chart-series-line { -fx-stroke: black; }
+.default-color2.chart-line-symbol {
+-fx-background-color: black, black;
+ }
+
+.default-color0.chart-series-line { -fx-stroke: red; }
+.default-color0.chart-line-symbol {
+-fx-background-color: red, red;
+-fx-shape: "M5,0 L10,9 L5,18 L0,9 Z"; }
+
+.default-color3.chart-series-line { -fx-stroke: green; }
+.default-color3.chart-line-symbol {
+-fx-background-color: green, green;
+-fx-shape: "M2,0 L5,4 L8,0 L10,0 L10,2 L6,5 L10,8 L10,10 L8,10 L5,6 L2,10 L0,10 L0,8 L4,5 L0,2 L0,0 Z";}
+
+.default-color1.chart-series-line { -fx-stroke: blue; }
+.default-color1.chart-line-symbol {
+-fx-background-color: blue, blue;
+-fx-shape: "M5,0 L10,8 L0,8 Z";}
+
+.chart-legend {
+-fx-font-size: 16px;
+}
+.axis-tick-mark {
+    -fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+.axis-minor-tick-mark {
+    -fx-stroke: gray;
+}
+
+.chart-bar {-fx-background-insets: 0,1,2;}
+.default-color2.chart-symbol { /* solid diamond */
+    -fx-background-color: #22bad9;
+    -fx-background-radius: 0;
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-shape: "M5,0 L10,9 L5,18 L0,9 Z";
+}
