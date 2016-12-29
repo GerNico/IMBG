@@ -331,12 +331,13 @@ public class Main extends Application {
         return read.makeData(curvename,selectCH.getValue());
     }
     private void setAxis(SPR plot,int s,int cb){
-            Double[][] borders=plot.getborders(s,cb,selectCH.getValue());
+            Double[][] borders=plot.plotborders(s,cb,selectCH.getValue());
             xAxis.setLowerBound(borders[0][0]);
             xAxis.setUpperBound(borders[0][1]);
+            xAxis.setTickUnit(borders[2][0]);
             yAxis.setLowerBound(borders[1][0]);
             yAxis.setUpperBound(borders[1][1]);
-            yAxis.setTickUnit(borders[2][0]);
+            yAxis.setTickUnit(borders[2][1]);
             initXLowerBound = ((NumberAxis) onlyChart.getXAxis()).getLowerBound();
             initXUpperBound = ((NumberAxis) onlyChart.getXAxis()).getUpperBound();
             initYLowerBound = ((NumberAxis) onlyChart.getYAxis()).getLowerBound();

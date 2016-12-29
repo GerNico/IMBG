@@ -1,9 +1,8 @@
 package spr;
 
 import javafx.scene.chart.XYChart;
+
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -40,27 +39,22 @@ class SPR {
             for(int i=0;i<this.BigList.size();i++)timeMas[i]=BigList.get(i).get(0);
         }
 
-    Double[][] getborders(int s, int cb, int canal) {
-        ArrayList<Double> masX= new ArrayList<>();ArrayList<Double> masY= new ArrayList<>();
-        for (int i = s; (i < s + cb)&&(i<this.BigList.size()); i++) {
+    Double[][] plotborders(int slider, int cb, int canal) {
+        ArrayList<Double> masX= new ArrayList<>();
+        ArrayList<Double> masY= new ArrayList<>();
+
+        for (int i = slider; (i < slider + cb)&&(i<this.BigList.size()); i++) {
             masX.add(this.BigList.get(i).get(0));
             masY.add(this.BigList.get(i).get(canal));
         }
-        Collections.sort(masX);Collections.sort(masY);
-        double diap = masY.get(masY.size() - 1) - masY.get(0);
-        double ymax = new BigDecimal(masY.get(masY.size() - 1)).setScale(5, RoundingMode.DOWN).doubleValue();
-        int odr = 5;
-        while (masY.get(masY.size() - 1) - ymax < diap / 400) {
-            ymax = new BigDecimal(masY.get(masY.size() - 1)).setScale(odr, RoundingMode.DOWN).doubleValue();
-            odr--;
-        }odr++;//Визначити вдалий порядок округлення
-        double minX = new BigDecimal(masX.get(0)).setScale(0, RoundingMode.DOWN).doubleValue();
-        double maxX = new BigDecimal(masX.get(masX.size() - 1)).setScale(0, RoundingMode.UP).doubleValue();
-        double minY = new BigDecimal(masY.get(0)-0.1*(masY.get(masY.size() - 1)-masY.get(0))).setScale(odr, RoundingMode.DOWN).doubleValue();
-        double maxY = new BigDecimal(masY.get(masY.size() - 1)+0.1*(masY.get(masY.size() - 1)-masY.get(0))).setScale(odr, RoundingMode.UP).doubleValue();
-        double dY = new BigDecimal(diap / 9).setScale(odr, RoundingMode.UP).doubleValue();
+        double xMin=Collections.min(masX);
+        double xMax=Collections.max(masX);
+        NiceResolution xAxis=new NiceResolution(xMin,xMax);
+        double yMin=Collections.min(masY);
+        double yMax=Collections.max(masY);
+        NiceResolution yAxis=new NiceResolution(yMin,yMax);
 
-        return new Double[][]{{minX, maxX}, {minY, maxY}, {dY}};
+            return new Double[][]{{xAxis.min,xAxis.max},{yAxis.min,yAxis.max},{xAxis.tick,yAxis.tick}};
     }
 
     XYChart.Series makeData(String curvename, int canal){
