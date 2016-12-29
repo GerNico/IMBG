@@ -1,4 +1,4 @@
-package java.spr;
+package spr;
 
 import javafx.scene.chart.XYChart;
 import java.io.IOException;

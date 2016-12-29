@@ -1,4 +1,4 @@
-package java.spr;
+package spr;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -29,8 +29,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.java.spr.SPR;
-import main.java.spr.SmartExpFit;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 
@@ -297,7 +295,7 @@ public class Main extends Application {
 
         selectRange = new VBox(5,chartBox,setings,mainS);
         selectRange.setPadding(new Insets(10, 10, 10, 10));
-        selectRange.getStylesheets().setAll("SPR/style.css");
+        selectRange.getStylesheets().setAll("style.css");
         scMain=new Scene(selectRange);
         currentStage.setMinWidth(540);        currentStage.setMinHeight(120);
         currentStage.setResizable(false);
