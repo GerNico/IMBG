@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>SPR_analizer</artifactId>
     <groupId>GerNico</groupId>
-    <version>V_1.0</version>
+    <version>V_1.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,12 +14,17 @@
     </properties>
 
     <build>
+        <sourceDirectory>D:/IMBG/SPR/src/java</sourceDirectory>
         <plugins>
+
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
             </plugin>
+
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.3</version>
                 <executions>
@@ -30,7 +35,8 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Main-Class>spr.Main</Main-Class>
                                         <Build-Number>1</Build-Number>
@@ -40,10 +46,10 @@
                         </configuration>
                     </execution>
                 </executions>
+
             </plugin>
         </plugins>
     </build>
-
     <dependencies>
 
         <dependency>
@@ -51,17 +57,16 @@
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>3.15-beta2</version>
-        </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
         <dependency>
             <groupId>org.apache.xmlbeans</groupId>
             <artifactId>xmlbeans</artifactId>
             <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.15-beta2</version>
         </dependency>
     </dependencies>
 

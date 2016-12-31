@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.charts.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.WorkbookUtil;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
@@ -37,7 +38,7 @@ class ExcelUsage {
             for (int i = 0; i < mas.size(); i++) thisRow.createCell(i).setCellValue(mas.get(i));
             j++;
         }
-        for(int i=0;i<colomns.length;i++)sh1.autoSizeColumn(i);
+            for(int i=0;i<colomns.length;i++)sh1.autoSizeColumn(i);
     }
 
     void allToExcell(String path) throws IOException {
@@ -59,7 +60,7 @@ class ExcelUsage {
         }
 
         CellStyle style = this.wb.createCellStyle();
-        style.setFillPattern(CellStyle.SOLID_FOREGROUND);//без цього не працює
+        style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);;
         style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
 
         CellStyle style2 = this.wb.createCellStyle();
@@ -72,8 +73,8 @@ class ExcelUsage {
         style2.setBorderTop(BorderStyle.MEDIUM);
 
         int start1,start2,finish1,finish2;
-        start1=s2-s+2;  finish1=s2-s+cb2+2;
-        start2=s3-s+2;  finish2=s3-s+cb2+2;
+        start1=s2-s+3;  finish1=s2-s+cb2+3;
+        start2=s3-s+3;  finish2=s3-s+cb2+3;
 
         for(int i=start1-1;i<finish1;i++)sh.getRow(i).getCell(can).setCellStyle(style);
         for(int i=start2-1;i<finish2;i++)sh.getRow(i).getCell(can).setCellStyle(style);

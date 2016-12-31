@@ -37,9 +37,10 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+@SuppressWarnings({"unchecked", "SameParameterValue"})
 public class Main extends Application {
     private SPR read;
-    private Scene scOpenFile,scMain;
+    private Scene scMain;
     private ChoiceBox<Integer> cb,cb2,cb3,selectCH;
     private final NumberAxis xAxis=new NumberAxis();
     private final NumberAxis yAxis=new NumberAxis();
@@ -79,11 +80,11 @@ public class Main extends Application {
         RadioMenuItem analS = new RadioMenuItem("Аналітика");
 
         ToggleGroup group = new ToggleGroup();
-        fileS.setToggleGroup(group);                fileS.setOnAction(event -> {selectMode(4);});
-        rangeS.setToggleGroup(group);               rangeS.setOnAction(event -> {selectMode(0);});
-        delPoint.setToggleGroup(group);             delPoint.setOnAction(event -> {selectMode(3);});
-        fitS.setToggleGroup(group);                 fitS.setOnAction(event -> {selectMode(1);});
-        analS.setToggleGroup(group);                analS.setOnAction(event -> {selectMode(2);});
+        fileS.setToggleGroup(group);                fileS.setOnAction(event -> selectMode(4));
+        rangeS.setToggleGroup(group);               rangeS.setOnAction(event -> selectMode(0));
+        delPoint.setToggleGroup(group);             delPoint.setOnAction(event -> selectMode(3));
+        fitS.setToggleGroup(group);                 fitS.setOnAction(event -> selectMode(1));
+        analS.setToggleGroup(group);                analS.setOnAction(event -> selectMode(2));
         rangeS.setSelected(true);
 
         menu.getItems().addAll(rangeS,fitS,analS,delPoint,fileS);
@@ -96,44 +97,6 @@ public class Main extends Application {
         yAxis.setAutoRanging(false);
         onlyChart = new LineChart<>(xAxis, yAxis);
         onlyChart.setAnimated(false);
-
-        //-----------------------------------         Selection of the file
-        currentStage.setTitle("Select the file");
-        Label lb1 = new Label();            lb1.setText("sp1/sp2: ");
-        Label selectedFile = new Label();   selectedFile.setText("");
-        Button openButton = new Button("Open spr");         openButton.setMinWidth(100);
-
-        final FileChooser fileOpener = new FileChooser();
-        fileOpener.setTitle("Open the file");
-        fileOpener.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("SPR file","*.sp2","*.sp1"));
-
-        openButton.setOnAction(
-                e -> {
-                    //      selection of the file
-                    File file = fileOpener.showOpenDialog(currentStage);
-                    if (file != null) {
-                        try {
-                            read =new SPR(file.getPath());
-                        } catch (IOException e1) {e1.printStackTrace();}
-                        selectedFile.setText(file.getPath());
-                        scroll1.s.setMin(0);
-                        scroll1.s.setMax(read.timeMas.length-1-initCB);
-                        onlyChart.getData().setAll(makeData("working"));
-                        setAxis(read,initS1,initCB);
-                        currentStage.setScene(scMain);
-                        currentStage.setHeight(StageHight2);
-                        rangeS.setSelected(true);selectMode(0);
-                        toExcel=new ExcelUsage(read);
-                    }
-                });
-        HBox openBox = new HBox(openButton, lb1, selectedFile);
-        openBox.setSpacing(10); openBox.setAlignment(Pos.CENTER_LEFT);
-        VBox openFile = new VBox(12,openBox);
-        openFile.setPadding(new Insets(10, 10, 10, 10));
-        scOpenFile=new Scene(openFile);
-        currentStage.setScene(scOpenFile);
-        currentStage.setHeight(StageHight1);
-        currentStage.show();
         //---------------------------------------       Select main range
         //       Вибір діапазону
         labelCB = new Label();           labelCB.setText("діапазон, точки");
@@ -263,7 +226,7 @@ public class Main extends Application {
             }
         });
 
-        saveButton = new Button("Зберегти");         saveButton.setPrefWidth(100);
+        saveButton = new Button("Зберегти всі листи в книгу");         saveButton.setPrefWidth(300);
         final FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save your file");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel","*.xlsx"));
@@ -290,15 +253,17 @@ public class Main extends Application {
         labelBox1= new HBox(labelAnalitic1);   labelBox1.setSpacing(10);    labelBox1.setAlignment(Pos.CENTER_LEFT);
         labelBox2= new HBox(labelAnalitic2);   labelBox2.setSpacing(10);    labelBox2.setAlignment(Pos.CENTER_LEFT);
 
-        chartBox = new BorderPane(onlyChart);                              // chartBox.setCenter(onlyChart);
+        chartBox = new BorderPane(onlyChart);
         chartBox.setTop(menuBar);
 
-        selectRange = new VBox(5,chartBox,setings,mainS);
+        selectRange = new VBox(5,chartBox,mainS,setings);
         selectRange.setPadding(new Insets(10, 10, 10, 10));
         selectRange.getStylesheets().setAll("style.css");
         scMain=new Scene(selectRange);
+        currentStage.setScene(scMain);
         currentStage.setMinWidth(540);        currentStage.setMinHeight(120);
         currentStage.setResizable(false);
+        currentStage.show();
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~кволі намагання зробити зум
 
         path = new Path();
@@ -325,10 +290,10 @@ public class Main extends Application {
 
     }
 //=========================================   методи і класи     =======================================================
-    private Series makeData(String curvename){
+    private Series makeData(String name){
         Series series = new Series();
-        series.setName(curvename);
-        return read.makeData(curvename,selectCH.getValue());
+        series.setName(name);
+        return read.makeData(name,selectCH.getValue());
     }
     private void setAxis(SPR plot,int s,int cb){
             Double[][] borders=plot.plotborders(s,cb,selectCH.getValue());
@@ -355,7 +320,7 @@ public class Main extends Application {
                 read.takeData("working",(int)scroll1.s.getValue(),cb.getValue(),selectCH.getValue()),
                 read.takeData("fit data",i,cb2,selectCH.getValue()));
     }
-    void fitdata(int s, int cb2){
+    private void fitdata(int s, int cb2){
         int length;if(s+cb2<read.BigList.size())length=cb2;        else length=read.BigList.size()-s;
         double[] t=new double[length];double[] fi=new double[length];
         for (int i=0; i<length;i++){
@@ -373,13 +338,13 @@ public class Main extends Application {
         XYChart.Series series = new XYChart.Series();
         series.setName("fitted");
         if(fit.incrExp)
-            for (int i = 0;i<t.length; i++)
-            series.getData().add(new XYChart.Data(t[i]
-                    ,fit.y0_A_k[0]+fit.y0_A_k[1]*(1-Math.exp(-fit.y0_A_k[2]*(t[i]-t[0])))));
+            for (double aT1 : t)
+                series.getData().add(new XYChart.Data(aT1
+                        , fit.y0_A_k[0] + fit.y0_A_k[1] * (1 - Math.exp(-fit.y0_A_k[2] * (aT1 - t[0])))));
         else
-            for (int i = 0;i<t.length; i++)
-                series.getData().add(new XYChart.Data(t[i]
-                        ,fit.y0_A_k[0]+fit.y0_A_k[1]*Math.exp(-fit.y0_A_k[2]*(t[i]-t[0]))));
+            for (double aT : t)
+                series.getData().add(new XYChart.Data(aT
+                        , fit.y0_A_k[0] + fit.y0_A_k[1] * Math.exp(-fit.y0_A_k[2] * (aT - t[0]))));
 
         onlyChart.getData().setAll(
                 read.takeData("working",(int)scroll1.s.getValue(),cb.getValue(),selectCH.getValue()),
@@ -448,9 +413,13 @@ public class Main extends Application {
             scroll5.s.setMax(scroll1.s.getValue()+cb.getValue()-1-cb3.getValue());
             setAxis(read,(int)scroll1.s.getValue(),cb.getValue());
             analiticSLogic((int)scroll4.s.getValue(),(int)scroll5.s.getValue(),cb3.getValue()-1);
+            double offerMax;
+            if(read.timeMas[(int)(scroll1.s.getValue()+cb.getValue())]<scroll1.s.getMax())
+                offerMax=read.timeMas[(int)(scroll1.s.getValue()+cb.getValue())];else
+                    offerMax=scroll1.s.getMax();
             bookName.setText(selectCH.getValue()+"from"+
                     RoundN(read.timeMas[(int)scroll1.s.getValue()],1)
-                    +"to"+RoundN(read.timeMas[(int)(scroll1.s.getValue()+cb.getValue())],1));
+                    +"to"+RoundN(offerMax,1));
             currentStage.setHeight(StageHight2+40);
             currentStage.setScene(scMain);
         }
@@ -464,7 +433,26 @@ public class Main extends Application {
             currentStage.setHeight(StageHight2);
             currentStage.setScene(scMain);
         }
-        if(val==4)  {currentStage.setScene(scOpenFile);currentStage.setHeight(StageHight1);}
+        if(val==4)  {
+            final FileChooser fileOpener = new FileChooser();
+            fileOpener.setTitle("Open the file");
+            fileOpener.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("SPR file","*.sp2","*.sp1"));
+
+                        //      selection of the file
+                        File file = fileOpener.showOpenDialog(currentStage);
+                        if (file != null) {
+                            try {
+                                read =new SPR(file.getPath());
+                            } catch (IOException e1) {e1.printStackTrace();}
+                            scroll1.s.setMin(0);
+                            scroll1.s.setMax(read.timeMas.length-1-initCB);
+                            onlyChart.getData().setAll(makeData("working"));
+                            setAxis(read,initS1,initCB);
+                            currentStage.setScene(scMain);
+                            currentStage.setHeight(StageHight2);
+                            toExcel=new ExcelUsage(read);
+                        }
+        }
     }
     private String Round(double doUble){
        return Double.toString(new BigDecimal(doUble).setScale(1, RoundingMode.UP).doubleValue());
@@ -495,7 +483,7 @@ public class Main extends Application {
             return line;
         }
     }
-    public static void show(String message, String title)
+    private static void show(String message, String title)
     {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

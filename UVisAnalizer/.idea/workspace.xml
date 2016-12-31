@@ -7,35 +7,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/ExcelUsage.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$scrollBar.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SPR.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SmartExpFit$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SmartExpFit$DecrExp$MyFuncFitter.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SmartExpFit$DecrExp.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SmartExpFit$GrowingExp$MyFuncFitter.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SmartExpFit$GrowingExp.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SmartExpFit.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_3_15_beta2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_15_beta2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_15_beta2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_6_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/AxisAutoScale.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/.idea/compiler.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/.idea/encodings.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/NiceResolution.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_15_beta2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_15_beta2.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$1.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$scrollBar.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$scrollBar.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SPR.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SPR.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/SPR.iml" afterPath="$PROJECT_DIR$/../SPR/SPR.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/pom.xml" afterPath="$PROJECT_DIR$/../SPR/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/Main.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/NiceResolution.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/NiceResolution.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/SPR.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/SPR.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_3_15_beta2.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_3_15.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,7 +93,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
+            <state relative-caret-position="782">
               <caret line="346" column="0" lean-forward="false" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
               <folding>
                 <element signature="method#start#0;class#Main#0" expanded="false" />
@@ -116,8 +105,9 @@
                 <element signature="method#makeData#0;class#Main#0" expanded="false" />
                 <element signature="method#addCurve#0;class#Main#0" expanded="false" />
                 <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-                <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
+                <element signature="method#justFit#0;class#Main#0" expanded="false" />
                 <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
+                <element signature="method#handle#0;class#17854:21881" expanded="false" />
                 <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
                 <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
                 <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
@@ -128,64 +118,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParseXML.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/ParseXML.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="41" column="58" lean-forward="false" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="11" column="30" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="14" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CurveMaxRecord.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/CurveMaxRecord.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="52" column="1" lean-forward="false" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AxisAutoScale.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AxisAutoScale.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/AxisAutoScale.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+            <state relative-caret-position="238">
+              <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineChartWithMarkers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/LineChartWithMarkers.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+            <state relative-caret-position="-411">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="51" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -266,11 +213,11 @@
         <option value="$PROJECT_DIR$/src/main/java/Uvis/Borders2D.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/CurveMaxRecord.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Uvis/AxisAutoScale.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/LineChartWithMarkers.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/ParseXML.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/Uvis/AxisAutoScale.java" />
       </list>
     </option>
   </component>
@@ -335,6 +282,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -344,6 +293,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="UVisAnalizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UVisAnalizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UVisAnalizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,8 +370,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -964,6 +925,8 @@
       <workItem from="1482743887137" duration="1830000" />
       <workItem from="1482746830672" duration="548000" />
       <workItem from="1482997490407" duration="900000" />
+      <workItem from="1483002938214" duration="957000" />
+      <workItem from="1483029331807" duration="357000" />
     </task>
     <task id="LOCAL-00001" summary="UvisV0.1">
       <created>1473535386112</created>
@@ -1165,7 +1128,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75461000" />
+    <option name="totallyTimeSpent" value="76775000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1185,7 +1148,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22012103" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22617246" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1293,7 +1256,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="37" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1316,8 +1279,9 @@
             <element signature="method#makeData#0;class#Main#0" expanded="false" />
             <element signature="method#addCurve#0;class#Main#0" expanded="false" />
             <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
+            <element signature="method#justFit#0;class#Main#0" expanded="false" />
             <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
+            <element signature="method#handle#0;class#17854:21881" expanded="false" />
             <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
             <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
             <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
@@ -1371,8 +1335,9 @@
             <element signature="method#makeData#0;class#Main#0" expanded="false" />
             <element signature="method#addCurve#0;class#Main#0" expanded="false" />
             <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
+            <element signature="method#justFit#0;class#Main#0" expanded="false" />
             <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
+            <element signature="method#handle#0;class#17854:21881" expanded="false" />
             <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
             <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
             <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
@@ -1403,8 +1368,9 @@
             <element signature="method#makeData#0;class#Main#0" expanded="false" />
             <element signature="method#addCurve#0;class#Main#0" expanded="false" />
             <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
+            <element signature="method#justFit#0;class#Main#0" expanded="false" />
             <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
+            <element signature="method#handle#0;class#17854:21881" expanded="false" />
             <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
             <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
             <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
@@ -1677,7 +1643,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -1685,7 +1650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
+        <state relative-caret-position="782">
           <caret line="346" column="0" lean-forward="false" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
           <folding>
             <element signature="method#start#0;class#Main#0" expanded="false" />
@@ -1697,8 +1662,9 @@
             <element signature="method#makeData#0;class#Main#0" expanded="false" />
             <element signature="method#addCurve#0;class#Main#0" expanded="false" />
             <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
+            <element signature="method#justFit#0;class#Main#0" expanded="false" />
             <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
+            <element signature="method#handle#0;class#17854:21881" expanded="false" />
             <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
             <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
             <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
@@ -1708,18 +1674,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/AxisAutoScale.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="14" selection-end-column="17" />
+        <state relative-caret-position="238">
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/AxisAutoScale.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        <state relative-caret-position="-411">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="51" selection-end-column="12" />
           <folding />
         </state>
       </provider>
