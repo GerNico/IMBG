@@ -8,21 +8,21 @@ html {
 
 body {
   background: #c1bdba;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: "Times New Roman";
 }
 
 a {
   text-decoration: none;
-  color: #1ab188;
+  color: rgba(255, 10, 0, 0.75);
   -webkit-transition: .5s ease;
   transition: .5s ease;
 }
 a:hover {
-  color: #179b77;
+  color: rgba(255, 10, 0, 0.85);
 }
 
 .form {
-  background: rgba(19, 35, 47, 0.9);
+  background: rgba(255, 255, 255, 1);
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -55,12 +55,14 @@ a:hover {
   transition: .5s ease;
 }
 .tab-group li a:hover {
-  background: #179b77;
-  color: #ffffff;
+  background: rgba(255, 10, 0, 0.90);
+  font-weight: bold;
+  color: #323232;
 }
 .tab-group .active a {
-  background: #1ab188;
-  color: #ffffff;
+  background: rgba(255, 10, 0, 0.80);
+  font-weight: bold;
+  color: #323232;
 }
 
 .tab-content > div:last-child {
@@ -69,9 +71,9 @@ a:hover {
 
 h1 {
   text-align: center;
-  color: #ffffff;
-  font-weight: 300;
-  margin: 0 0 40px;
+  color: #000000;
+  font-weight: bold;
+  margin: 0 0 18px;
 }
 
 label {
@@ -79,7 +81,7 @@ label {
   -webkit-transform: translateY(6px);
           transform: translateY(6px);
   left: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(50, 50, 50, 0.5);
   -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
   -webkit-backface-visibility: hidden;
@@ -88,7 +90,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+  color: rgba(255, 10, 0, 0.75);
 }
 
 label.active {
@@ -102,7 +104,7 @@ label.active .req {
 }
 
 label.highlight {
-  color: #ffffff;
+  color: #323232;
 }
 
 input, textarea {
@@ -112,20 +114,19 @@ input, textarea {
   height: 100%;
   padding: 5px 10px;
   background: none;
-  background-image: none;
-  border: 1px solid #a0b3b0;
-  color: #ffffff;
+  border: 1px solid #323232;
+  color: #323232;
   border-radius: 0;
   -webkit-transition: border-color .25s ease, box-shadow .25s ease;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
 input:focus, textarea:focus {
   outline: 0;
-  border-color: #1ab188;
+  border-color: rgba(255, 10, 0, 0.85);
 }
 
 textarea {
-  border: 2px solid #a0b3b0;
+  border: 2px solid #00ff00;
   resize: vertical;
 }
 
@@ -152,19 +153,18 @@ textarea {
   border: 0;
   outline: none;
   border-radius: 0;
+  font-size: 36px;
+    font-weight: bold;
+  font-family: "Times New Roman";
   padding: 15px 0;
-  font-size: 2rem;
-  font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
-  color: #ffffff;
+  background: rgba(255, 10, 0, 0.80);
+  color: #000000;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  -webkit-appearance: none;
 }
 .button:hover, .button:focus {
-  background: #179b77;
+  background: rgba(255, 10, 0, 0.95);
 }
 
 .button-block {
