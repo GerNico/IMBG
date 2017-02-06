@@ -9,8 +9,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -23,9 +21,9 @@ class ExcelUsage {
     private Workbook wb;
 
     ExcelUsage(SPR spr){
-        if(spr.isTemperature)this.colomns= new String[]{"Час, хв", "внутр.(черв.) канал",
-                "зовн.(синій.) канал","температура, °C"};
-        else colomns= new String[]{"Час, хв", "внутр.(черв.) канал", "зовн.(синій.) канал"};
+        if(spr.isTemperature)this.colomns= new String[]{"Час, хв", "черв. канал",
+                "синій канал","температура, °C"};
+        else colomns= new String[]{"Час, хв", "черв. канал", "синій канал"};
         this.table=spr.BigList;
         this.istemp=spr.isTemperature;
         this.wb=new XSSFWorkbook();
@@ -39,6 +37,45 @@ class ExcelUsage {
             j++;
         }
             for(int i=0;i<colomns.length;i++)sh1.autoSizeColumn(i);
+                /*                                            Plot                                              */
+
+        Drawing drawing = sh1.createDrawingPatriarch();
+        ClientAnchor anchor = drawing.createAnchor(0,0,0,0,4,0,18,20);
+
+        Chart chart1 = drawing.createChart(anchor);
+        ChartLegend legend = chart1.getOrCreateLegend();
+        legend.setPosition(LegendPosition.BOTTOM);
+
+        ScatterChartData data = chart1.getChartDataFactory().createScatterChartData();
+
+        ArrayList<Double> mas1 = new ArrayList<>();
+        for(int i=0;i<table.size();i++) mas1.add(table.get(i).get(1));
+        ArrayList<Double> mas2 = new ArrayList<>();
+        for(int i=0;i<table.size();i++) mas2.add(table.get(i).get(2));
+
+        ValueAxis bottomAxis = chart1.getChartAxisFactory().createValueAxis(AxisPosition.BOTTOM);
+        AxisAutoScale xRes= new AxisAutoScale(table.get(0).get(0),table.get(table.size()-1).get(0));
+        bottomAxis.setMinimum(xRes.min);
+        bottomAxis.setMaximum(xRes.max);
+        ValueAxis leftAxis = chart1.getChartAxisFactory().createValueAxis(AxisPosition.LEFT);
+
+        double min=Math.min(Collections.min(mas1),Collections.min(mas2));
+        double max=Math.max(Collections.max(mas1),Collections.max(mas2));
+        AxisAutoScale yRes= new AxisAutoScale(min,max);
+        leftAxis.setMinimum(yRes.min);
+        leftAxis.setMaximum(yRes.max);
+        leftAxis.setCrosses(AxisCrosses.MIN);
+
+        ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sh1, new CellRangeAddress(1,table.size(), 0, 0));
+        ChartDataSource<Number> ys = DataSources.fromNumericCellRange(sh1, new CellRangeAddress(1,table.size(),1,1));
+        ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sh1, new CellRangeAddress(1,table.size(),2,2));
+
+        data.addSerie(xs, ys);data.addSerie(xs, ys2);
+        chart1.plot(data, bottomAxis, leftAxis);
+        chart1.deleteLegend();
+
+
+        /*                                            End of plot                                         */
     }
 
     void allToExcell(String path) throws IOException {
@@ -47,7 +84,11 @@ class ExcelUsage {
         outputStream.close();//закрий поток
     }
 
-    void fragToXLS (String sheetName, int s,int cb,int s2,int s3,int cb2,int can) throws IOException {
+    void fragToXLS (String sheetName, int s,int cb,int s2,int s3,int cb2,int can,String stringFactor, boolean corection, double k) throws IOException {
+        int factor;
+        if(stringFactor.equals("deg"))factor=1;
+        else if(stringFactor.equals("r.u."))factor=10000;
+        else {stringFactor="mdeg"; factor=1000;}
 
         Sheet sh = this.wb.createSheet(WorkbookUtil.createSafeSheetName(sheetName));
         Row firstRow = sh.createRow(0);
@@ -80,40 +121,50 @@ class ExcelUsage {
         for(int i=start1;i<=finish1;i++)sh.getRow(i).getCell(can).setCellStyle(style);
         for(int i=start2;i<=finish2;i++)sh.getRow(i).getCell(can).setCellStyle(style);
 
+        if(corection==true){
+            k=k/1000;// conversion from mdeg/min
+            firstRow.createCell(this.colomns.length).setCellValue("корекція");
+            double b=sh.getRow(finish1).getCell(can).getNumericCellValue()-k*sh.getRow(finish1).getCell(0).getNumericCellValue();
+            for (int j=1;j<cb+1;j++) {
+                sh.getRow(j).createCell(this.colomns.length).setCellValue(sh.getRow(j).getCell(can).getNumericCellValue()
+                        +sh.getRow(finish1).getCell(can).getNumericCellValue()
+                        -k*sh.getRow(j).getCell(0).getNumericCellValue()-b);
+            }}
+
         cellSt(sh,style2,0,6,"Осн.  канал");
         cellSt(sh,style2,1,6,"M,      deg");
-        cellSt(sh,style2,1,7,"SD,    mdeg");
+        cellSt(sh,style2,1,7,"SD,    "+stringFactor);
 
         cellSt(sh,style2,2,5,"Початок");
         cellSt(sh,style2,3,5,"Кінець");
 
         cellIfF(sh,style2,can,2,6,"AVERAGE(B"+st1+":B"+fin1+")","AVERAGE(C"+st1+":C"+fin1+")");
         cellIfF(sh,style2,can,3,6,"AVERAGE(B"+st2+":B"+fin2+")","AVERAGE(C"+st2+":C"+fin2+")");
-        cellIfF(sh,style2,can,2,7,"STDEV(B"+st1+":B"+fin1+")*1000","STDEV(C"+st1+":C"+fin1+")*1000");
-        cellIfF(sh,style2,can,3,7,"STDEV(B"+st2+":B"+fin2+")*1000","STDEV(C"+st2+":C"+fin2+")*1000");
+        cellIfF(sh,style2,can,2,7,"STDEV(B"+st1+":B"+fin1+")*"+factor,"STDEV(C"+st1+":C"+fin1+")*"+factor);
+        cellIfF(sh,style2,can,3,7,"STDEV(B"+st2+":B"+fin2+")*"+factor,"STDEV(C"+st2+":C"+fin2+")*"+factor);
 
         cellSt(sh,style2,4,6,"Доп. канал");
         cellSt(sh,style2,5,6,"M,      deg");
-        cellSt(sh,style2,5,7,"SD,    mdeg");
+        cellSt(sh,style2,5,7,"SD,   "+stringFactor);
 
         cellSt(sh,style2,6,5,"Початок");
         cellSt(sh,style2,7,5,"Кінець ");
 
         cellNIfF(sh,style2,can,6,6,"AVERAGE(B"+st1+":B"+fin1+")","AVERAGE(C"+st1+":C"+fin1+")");
         cellNIfF(sh,style2,can,7,6,"AVERAGE(B"+st2+":B"+fin2+")","AVERAGE(C"+st2+":C"+fin2+")");
-        cellNIfF(sh,style2,can,6,7,"STDEV(B"+st1+":B"+fin1+")*1000","STDEV(C"+st1+":C"+fin1+")*1000");
-        cellNIfF(sh,style2,can,7,7,"STDEV(B"+st2+":B"+fin2+")*1000","STDEV(C"+st2+":C"+fin2+")*1000");
+        cellNIfF(sh,style2,can,6,7,"STDEV(B"+st1+":B"+fin1+")*"+factor,"STDEV(C"+st1+":C"+fin1+")*"+factor);
+        cellNIfF(sh,style2,can,7,7,"STDEV(B"+st2+":B"+fin2+")*"+factor,"STDEV(C"+st2+":C"+fin2+")*"+factor);
 
-        cellSt(sh,style2,9,5,"SignalM, mdeg");
-        cellStF(sh,style2,9,6,"(G4-G3)*1000");
-        cellSt(sh,style2,9,7,"SignalSD, mdeg");
+        cellSt(sh,style2,9,5,"SignalM, "+stringFactor);
+        cellStF(sh,style2,9,6,"(G4-G3)*"+factor);
+        cellSt(sh,style2,9,7,"SignalSD, "+stringFactor);
         cellStF(sh,style2,9,8,"SQRT(H4*H4+H3*H3)");
         sh.getRow(9).getCell(5).setCellStyle(style);
         sh.getRow(9).getCell(6).setCellStyle(style);
 
-        cellSt(sh,style2,10,5,"ReferenceM, mdeg");
-        cellStF(sh,style2,10,6,"(G8-G7)*1000");
-        cellSt(sh,style2,10,7,"ReferenceSD, mdeg");
+        cellSt(sh,style2,10,5,"ReferenceM, "+stringFactor);
+        cellStF(sh,style2,10,6,"(G8-G7)*"+factor);
+        cellSt(sh,style2,10,7,"ReferenceSD, "+stringFactor);
         cellStF(sh,style2,10,8,"SQRT(H8*H8+H7*H7)");
 
         cellSt(sh,style2,11,5,"timeOfAveraging, min");
@@ -142,6 +193,17 @@ class ExcelUsage {
 
         ArrayList<Double> mas = new ArrayList<>();
         for(int i=s;(i<s+cb)&&(i<table.size());i++) mas.add(table.get(i).get(can));
+        double min,max;
+        if(corection==true){
+            ArrayList<Double> mas2 = new ArrayList<>();
+                for (int j=1;j<cb+1;j++) {mas2.add(sh.getRow(j).getCell(this.colomns.length).getNumericCellValue());}
+            min=Math.min(Collections.min(mas),Collections.min(mas2));
+            max=Math.max(Collections.max(mas),Collections.max(mas2));
+        }else{
+            min=Collections.min(mas);
+            max=Collections.max(mas);
+        }
+
 
         ValueAxis bottomAxis = chart.getChartAxisFactory().createValueAxis(AxisPosition.BOTTOM);
         AxisAutoScale xRes= new AxisAutoScale(table.get(s).get(0),table.get(s+cb).get(0));
@@ -149,8 +211,6 @@ class ExcelUsage {
         bottomAxis.setMaximum(xRes.max);
         ValueAxis leftAxis = chart.getChartAxisFactory().createValueAxis(AxisPosition.LEFT);
 
-        double min=RoundN(Collections.min(mas),4);
-        double max=RoundN(Collections.max(mas),4);
         AxisAutoScale yRes= new AxisAutoScale(min,max);
         leftAxis.setMinimum(yRes.min);
         leftAxis.setMaximum(yRes.max);
@@ -158,13 +218,21 @@ class ExcelUsage {
 
         ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb, 0, 0));
         ChartDataSource<Number> ys1 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb,can,can));
+        if(corection==false){
         ChartDataSource<Number> x2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1, 0, 0));
         ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1,can,can));
         ChartDataSource<Number> x3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2, 0, 0));
         ChartDataSource<Number> ys3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2,can,can));
 
-
-        data.addSerie(xs, ys1);       data.addSerie(x2, ys2);       data.addSerie(x3, ys3);
+        data.addSerie(xs, ys1);       data.addSerie(x2, ys2);       data.addSerie(x3, ys3);        }
+        else{
+            ChartDataSource<Number> x2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1, 0, 0));
+            ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1,this.colomns.length,this.colomns.length));
+            ChartDataSource<Number> x3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2, 0, 0));
+            ChartDataSource<Number> ys3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2,this.colomns.length,this.colomns.length));
+            ChartDataSource<Number> yCor = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb,this.colomns.length,this.colomns.length));
+            data.addSerie(xs, ys1);    data.addSerie(xs, yCor);    data.addSerie(x2, ys2);       data.addSerie(x3, ys3);
+        }
         chart.deleteLegend();
 
         chart.plot(data, bottomAxis, leftAxis);
@@ -190,7 +258,5 @@ class ExcelUsage {
         if(can==1) sh.getRow(row).createCell(cell).setCellFormula(s2);
         sh.getRow(row).getCell(cell).setCellStyle(st);
     }
-    private double RoundN(double doUble,int n){
-        return new BigDecimal(doUble).setScale(n, RoundingMode.HALF_DOWN).doubleValue();
-    }
+
 }

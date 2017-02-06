@@ -42,6 +42,8 @@ public class Main extends Application {
     private SPR read;
     private Scene scMain;
     private ChoiceBox<Integer> cb,cb2,cb3,selectCH;
+    private ChoiceBox<String> cbUnits;
+    private CheckBox corection;
     private final NumberAxis xAxis=new NumberAxis();
     private final NumberAxis yAxis=new NumberAxis();
     private scrollBar scroll1,scroll2,scroll3,scroll4,scroll5;
@@ -49,7 +51,7 @@ public class Main extends Application {
     private LineChart onlyChart;
     private HBox setings,mainS,supS,delScrollBar,D1box,D2box,labelBox1,labelBox2,fitBox,addBox;
     private BorderPane chartBox;
-    private Label labelCB,labelFit,labelCH,labelAnalitic1,labelAnalitic2,labelforFit,labelcb3;
+    private Label labelCB,labelFit,labelCH,labelAnalitic1,labelAnalitic2,labelforFit,labelcb3,angleUnits,correctionLabel;
     private Stage currentStage;
     private VBox selectRange;
     private Button deleteButton;
@@ -66,6 +68,7 @@ public class Main extends Application {
     private SimpleDoubleProperty rectinitY = new SimpleDoubleProperty();
     private SimpleDoubleProperty rectX = new SimpleDoubleProperty();
     private SimpleDoubleProperty rectY = new SimpleDoubleProperty();
+    double drift1;
 
 
     @Override
@@ -158,6 +161,16 @@ public class Main extends Application {
                     analiticSLogic((int)scroll4.s.getValue(),(int)scroll5.s.getValue(),it-1);
                 }));
 
+//      Ввибір одиниці виміру
+        angleUnits = new Label();           angleUnits.setText("кут в");
+        ArrayList<String> angleunits = new ArrayList<>();
+        angleunits.add("deg");angleunits.add("mdeg");angleunits.add("r.u.");
+        cbUnits= new ChoiceBox<>(FXCollections.observableArrayList(angleunits));
+        cbUnits.setValue("mdeg");
+//      CheckBox корекції по поточному каналу
+        correctionLabel = new Label();           correctionLabel.setText("корекція?");
+        corection=new CheckBox();corection.setSelected(false);
+
 //      слайдер уточнення
         scroll2=new scrollBar((int)scroll1.s.getValue(),scroll1.text.getText(),"наближення");
         scroll2.s.valueProperty().addListener((observable, oldvalue, newvalue) ->
@@ -217,13 +230,14 @@ public class Main extends Application {
             xlsbooks.add(bookName.getText());
             try {
                 toExcel.fragToXLS(bookName.getText(),(int)scroll1.s.getValue(),cb.getValue(),
-                        (int)scroll4.s.getValue(),(int)scroll5.s.getValue(),cb3.getValue(),selectCH.getValue()  );
+                        (int)scroll4.s.getValue(),(int)scroll5.s.getValue(),cb3.getValue(),
+                        selectCH.getValue(), cbUnits.getValue(),corection.isSelected(),drift1);
             } catch (IOException e) {
                 showMessage(e.getMessage(),"error");
             }
         });
 
-        saveButton = new Button("Зберегти всі листи в книгу");         saveButton.setPrefWidth(300);
+        saveButton = new Button("Зберегти книгу");         saveButton.setPrefWidth(150);
         final FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save your file");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel","*.xlsx"));
@@ -373,7 +387,7 @@ public class Main extends Application {
         double mean2 = stats2.getMean();
         double std1 = stats1.getStandardDeviation() * 1000;
         double std2 = stats2.getStandardDeviation() * 1000;
-        double drift1 = regression1.getSlope() * 1000;
+        drift1 = regression1.getSlope() * 1000;
         double drift2 = regression2.getSlope() * 1000;
 
         labelAnalitic1.setText("φ1="+RoundN(mean1,5)+" deg; dφ1="+RoundN(std1,2)+
@@ -402,7 +416,7 @@ public class Main extends Application {
             currentStage.setScene(scMain);
         }
         if(val==2) {
-            setings.getChildren().setAll(labelcb3,cb3,saveButton);
+            setings.getChildren().setAll(labelcb3,cb3,saveButton,angleUnits,cbUnits,correctionLabel,corection);
             selectRange.getChildren().setAll(chartBox,setings,labelBox1,labelBox2,D1box,D2box,addBox);
             scroll4.s.setMin(scroll1.s.getValue());
             scroll4.s.setMax(scroll1.s.getValue()+cb.getValue()-1-cb3.getValue());
@@ -443,6 +457,12 @@ public class Main extends Application {
                             } catch (IOException e1) {e1.printStackTrace();}
                             scroll1.s.setMin(0);
                             scroll1.s.setMax(read.timeMas.length-1-initCB);
+                            scroll1.s.setValue(0);
+                            cb.setValue(200);
+                            selectCH.setValue(1);
+                            cb2.setValue(20);
+                            cb3.setValue(20);
+                            cbUnits.setValue("mdeg");
                             onlyChart.getData().setAll(makeData("working"));
                             setAxis(read,initS1,initCB);
                             currentStage.setScene(scMain);
@@ -577,13 +597,7 @@ public class Main extends Application {
         xAxis.setUpperBound(newXscale.max);
         xAxis.setTickUnit(newXscale.tick);
     }
-    private void ZoomFreeHand(Path path, double xScaleFactor, double yScaleFactor, double xaxisShift, double yaxisShift) {
 
-        path.setScaleY(yScaleFactor);
-        path.setScaleX(xScaleFactor);
-        path.setTranslateX(xaxisShift);
-        path.setTranslateY(yaxisShift);
-    }
 
 //-------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
