@@ -50,10 +50,10 @@ class SPR {
         }
         double xMin=Collections.min(masX);
         double xMax=Collections.max(masX);
-        NiceResolution xAxis=new NiceResolution(xMin-0.05*Math.abs(xMax-xMin),xMax+0.05*Math.abs(xMax-xMin));
+        AxisAutoScale xAxis=new AxisAutoScale(xMin-0.05*Math.abs(xMax-xMin),xMax+0.05*Math.abs(xMax-xMin));
         double yMin=Collections.min(masY);
         double yMax=Collections.max(masY);
-        NiceResolution yAxis=new NiceResolution(yMin-0.05*Math.abs(yMax-yMin),yMax+0.05*Math.abs(yMax-yMin));
+        AxisAutoScale yAxis=new AxisAutoScale(yMin-0.05*Math.abs(yMax-yMin),yMax+0.05*Math.abs(yMax-yMin));
 
             return new Double[][]{{xAxis.min,xAxis.max},{yAxis.min,yAxis.max},{xAxis.tick,yAxis.tick}};
     }

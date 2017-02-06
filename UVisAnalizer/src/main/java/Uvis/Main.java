@@ -53,7 +53,6 @@ public class Main extends Application {
     private ObservableList<Double> wl;
     private ChoiceBox<Double> st, fin;
     private ChoiceBox<Integer> order;
-    // private boolean[] selected;
     private Stage MyStage;
     private ParseXML wb;
     private Menu spectra;
@@ -69,6 +68,9 @@ public class Main extends Application {
     private TableView<CurveMaxRecord> table;
     private static DataFormat dataFormat = new DataFormat("mydata");
     private ObservableList<Integer> selectedIndexes = FXCollections.observableArrayList();
+    private static final String[] colors = {"Coral", "Darkred", "Deeppink", "Lightgreen", "Mediumblue", "Olivedrab",
+            "Rosybrown", "Blue","Orange", "Peru", "Aquamarine", "Gold", "orchid", "cyan", "indigo", "lightseagreen",
+            "plum","firebrick", "magent", "seagreen", "purple", "green", "black"};
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -96,6 +98,7 @@ public class Main extends Application {
         chartBox = new BorderPane(mainChart);
         chartBox.setTop(menuBar);
         chartBox.getStylesheets().setAll("series.css");
+
 
         wl = FXCollections.observableArrayList();
         st = new ChoiceBox<>(wl);
@@ -165,12 +168,12 @@ public class Main extends Application {
                 makeData();
                 setAxsisDiap(wb, 0, wb.workSheets.get(0).wavelength.size() - 1);
             } catch (ParserConfigurationException | SAXException | IOException e) {
-                show(e.getMessage());
+                showMessage(e.getMessage());
             }
         }
     }
 
-    private static void show(String message) {
+    private static void showMessage(String message) {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("error linked with file processing");
@@ -326,9 +329,9 @@ public class Main extends Application {
             if (!wb.workSheets.get(i).selected) continue;
             for (int j = 0; j < wb.workSheets.get(i).wavelength.size(); j++) {
                 A = wb.workSheets.get(i).absorbance.get(j);
-                seria.getData().add(new XYChart.Data(
-                        wb.workSheets.get(i).wavelength.get(j), A));
+                seria.getData().add(new XYChart.Data(wb.workSheets.get(i).wavelength.get(j), A));
             }
+            seria.setName("Curve0");
             allCurves.add(seria);
         }
         mainChart.getData().setAll(allCurves);
@@ -339,17 +342,19 @@ public class Main extends Application {
         Double A;
         for (int j = 0; j < wb.workSheets.get(i).wavelength.size(); j++) {
             A = wb.workSheets.get(i).absorbance.get(j);
-            seria.getData().add(new XYChart.Data(
-                    wb.workSheets.get(i).wavelength.get(j), A));
+            seria.getData().add(new XYChart.Data(wb.workSheets.get(i).wavelength.get(j), A));
         }
+        seria.setName("Curve"+i);
         mainChart.getData().add(seria);
     }
 
     private void removeCurve(int i) {
-        int k = 0;
-        for (int j = 0; j <= i; j++)
-            if (wb.workSheets.get(i).selected) k++;
-        mainChart.getData().remove(k);
+
+        for (Object seria : mainChart.getData()) {
+            XYChart.Series sI=(XYChart.Series)seria;
+            if(sI.getName().equals("Curve"+i)) mainChart.getData().remove(seria);
+        }
+
 
     }
 
@@ -366,18 +371,8 @@ public class Main extends Application {
             }
         }
         Double x1 = WB.workSheets.get(0).wavelength.get(start), x2 = WB.workSheets.get(0).wavelength.get(finish);
-
-        AxisAutoScale scaleX = new AxisAutoScale(x1, x2);
-
-        xAxis.setLowerBound(scaleX.min);
-        xAxis.setUpperBound(scaleX.max);
-        xAxis.setTickUnit(scaleX.tick);
-
-        AxisAutoScale scaleY = new AxisAutoScale(minA - (maxA - minA) / 10, maxA + 2 * (maxA - minA) / 10);
-
-        yAxis.setLowerBound(scaleY.min);
-        yAxis.setUpperBound(scaleY.max);
-        yAxis.setTickUnit(scaleY.tick);
+        if((x1!=x2)&&(minA - (maxA - minA) / 10!=maxA + 2 * (maxA - minA) / 10))
+        scaleXY(x1,x2,minA - (maxA - minA) / 10, maxA + 2 * (maxA - minA) / 10);
 
         initXLowerBound = ((NumberAxis) mainChart.getXAxis()).getLowerBound();
         initXUpperBound = ((NumberAxis) mainChart.getXAxis()).getUpperBound();
@@ -422,10 +417,10 @@ public class Main extends Application {
             data.add(newLine);
 
         }
-        setAxsisDiap(wb, wb.workSheets.get(0).wavelength.indexOf(st.getValue())
-                , wb.workSheets.get(0).wavelength.indexOf(fin.getValue()));
+        setAxsisDiap(wb, wb.workSheets.get(0).wavelength.indexOf(st.getValue()), wb.workSheets.get(0).wavelength.indexOf(fin.getValue()));
         showTable();
         chartBox.getStylesheets().setAll("series-line.css");
+        styleLineSeries();
 
     }
 
@@ -461,64 +456,32 @@ public class Main extends Application {
                 } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
 
                     if ((rectinitX.get() >= rectX.get()) && (rectinitY.get() >= rectY.get())) {
-                        LineChart<Number, Number> lineChart = (LineChart<Number, Number>) chartBox.getCenter();
+                        scaleXY(initXLowerBound,initXUpperBound,initYLowerBound,initYUpperBound);
 
-                        ((NumberAxis) lineChart.getXAxis()).setLowerBound(initXLowerBound);
-                        ((NumberAxis) lineChart.getXAxis()).setUpperBound(initXUpperBound);
-
-                        ((NumberAxis) lineChart.getYAxis()).setLowerBound(initYLowerBound);
-                        ((NumberAxis) lineChart.getYAxis()).setUpperBound(initYUpperBound);
-
-                        ZoomFreeHand(path, 1.0, 1.0, 0, 0);
                     } else {
                         double Tgap;
-                        double newLowerBound, newUpperBound, axisShift;
-                        double xScaleFactor, yScaleFactor;
+                        double newLowerBound, newUpperBound, xAxisShift,yAxisShift;
                         double yNewLowerBound, yNewUpperBound;
 
                         LineChart<Number, Number> lineChart = (LineChart<Number, Number>) chartBox.getCenter();
 
                         NumberAxis yAxis = (NumberAxis) lineChart.getYAxis();
                         Tgap = yAxis.getHeight() / (yAxis.getUpperBound() - yAxis.getLowerBound());
-                        axisShift = getSceneShiftY(yAxis);
+                        yAxisShift = getSceneShiftY(yAxis);
+                        yNewUpperBound = yAxis.getUpperBound() - ((rectinitY.get() - yAxisShift) / Tgap);
+                        yNewLowerBound = yAxis.getUpperBound() - ((rectY.get() - yAxisShift) / Tgap);
 
-                        newUpperBound = yAxis.getUpperBound() - ((rectinitY.get() - axisShift) / Tgap);
-                        newLowerBound = yAxis.getUpperBound() - ((rectY.get() - axisShift) / Tgap);
-
-                        if (newUpperBound > yAxis.getUpperBound())
-                            newUpperBound = yAxis.getUpperBound();
-
-                        yScaleFactor = (initYUpperBound - initYLowerBound) / (newUpperBound - newLowerBound);
-                        yNewLowerBound = newLowerBound;
-                        yNewUpperBound = newUpperBound;
+                        if (yNewUpperBound > yAxis.getUpperBound())yNewUpperBound = yAxis.getUpperBound();
 
                         NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
-
                         Tgap = xAxis.getWidth() / (xAxis.getUpperBound() - xAxis.getLowerBound());
+                        xAxisShift = getSceneShiftX(xAxis);
+                        newLowerBound = ((rectinitX.get() - xAxisShift) / Tgap) + xAxis.getLowerBound();
+                        newUpperBound = ((rectX.get() - xAxisShift) / Tgap) + xAxis.getLowerBound();
 
-                        axisShift = getSceneShiftX(xAxis);
+                        if (newUpperBound > xAxis.getUpperBound())newUpperBound = xAxis.getUpperBound();
 
-
-                        newLowerBound = ((rectinitX.get() - axisShift) / Tgap) + xAxis.getLowerBound();
-                        newUpperBound = ((rectX.get() - axisShift) / Tgap) + xAxis.getLowerBound();
-
-                        if (newUpperBound > xAxis.getUpperBound())
-                            newUpperBound = xAxis.getUpperBound();
-
-                        xScaleFactor = (initXUpperBound - initXLowerBound) / (newUpperBound - newLowerBound);
-
-                        AxisAutoScale newYscale = new AxisAutoScale(yNewLowerBound, yNewUpperBound);
-
-                        yAxis.setLowerBound(newYscale.min);
-                        yAxis.setUpperBound(newYscale.max);
-                        yAxis.setTickUnit(newYscale.tick);
-
-                        AxisAutoScale newXscale = new AxisAutoScale(newLowerBound, newUpperBound);
-
-                        xAxis.setLowerBound(newXscale.min);
-                        xAxis.setUpperBound(newXscale.max);
-                        xAxis.setTickUnit(newXscale.tick);
-                        ZoomFreeHand(path, xScaleFactor, yScaleFactor, newXscale.min, yNewUpperBound);
+                        scaleXY(newLowerBound, newUpperBound,yNewLowerBound, yNewUpperBound);
                     }
                     rectX.set(0);
                     rectY.set(0);
@@ -527,7 +490,6 @@ public class Main extends Application {
 
         }
     };
-
     private static double getSceneShiftX(Node node) {
         double shift = 0;
         do {
@@ -536,7 +498,6 @@ public class Main extends Application {
         } while (node != null);
         return shift;
     }
-
     private static double getSceneShiftY(Node node) {
         double shift = 0;
         do {
@@ -545,33 +506,57 @@ public class Main extends Application {
         } while (node != null);
         return shift;
     }
-
-    private void ZoomFreeHand(Path path, double xScaleFactor, double yScaleFactor, double xaxisShift, double yaxisShift) {
-
-        path.setScaleY(yScaleFactor);
-        path.setScaleX(xScaleFactor);
-        path.setTranslateX(xaxisShift);
-        path.setTranslateY(yaxisShift);
+    private void scaleXY(double xMin,double xMax,double yMin,double yMax){
+        AxisAutoScale newYscale = new AxisAutoScale(yMin, yMax);
+        yAxis.setLowerBound(newYscale.min);
+        yAxis.setUpperBound(newYscale.max);
+        yAxis.setTickUnit(newYscale.tick);
+        AxisAutoScale newXscale = new AxisAutoScale(xMin, xMax);
+        xAxis.setLowerBound(newXscale.min);
+        xAxis.setUpperBound(newXscale.max);
+        xAxis.setTickUnit(newXscale.tick);
     }
 
     @SuppressWarnings({"StringBufferReplaceableByString", "StringConcatenationInsideStringBufferAppend"})
     private void styleSeries() {
         mainChart.applyCss();
-        String[] colors = {"Coral", "Darkred", "Deeppink", "Lightgreen", "Mediumblue", "Olivedrab", "Rosybrown", "Blue",
-                "Orange", "Peru", "Aquamarine", "Gold", "orchid", "cyan", "indigo", "lightseagreen", "plum",
-                "firebrick", "magent", "seagreen", "purple", "green", "black"};
         int nSeries = 0;
         for (int k = 0; k < allCurves.size(); k++) {
 
             Set<Node> nodes = mainChart.lookupAll(".series" + nSeries);
             for (Node n : nodes) {
-                StringBuilder style = new StringBuilder();
+                StringBuffer style = new StringBuffer();
                 style.append("-fx-stroke: transparent; -fx-background-color: " + colors[k] + ", white; ");
                 n.setStyle(style.toString());
             }
             nSeries++;
         }
     }
+    private void styleLineSeries() {
+        mainChart.applyCss();
+        int nSeries = 0;
+        for (int k = 0; k < allCurves.size(); k+=2) {
+
+            Set<Node> nodes = mainChart.lookupAll(".chart-series-line" + nSeries);
+            for (Node n : nodes) {
+                StringBuffer style = new StringBuffer();
+                style.append("-fx-stroke: + colors[k]");
+                n.setStyle(style.toString());
+            }
+            nSeries++;
+        }
+        for (int k = 1; k < allCurves.size(); k+=2) {
+
+            Set<Node> nodes = mainChart.lookupAll(".chart-line-symbol" + nSeries);
+            for (Node n : nodes) {
+                StringBuffer style = new StringBuffer();
+                style.append("-fx-stroke: transparent; -fx-background-color: " + colors[k] + ", white; ");
+                n.setStyle(style.toString());
+            }
+            nSeries++;
+        }
+    }
+
 
     private void setRowFactory() {
         table.setRowFactory(p -> {

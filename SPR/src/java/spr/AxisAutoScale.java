@@ -1,4 +1,4 @@
-package Uvis;
+package spr;
 
 /**
  * Created by Matsishin on 22.12.2016.

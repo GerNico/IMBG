@@ -7,24 +7,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/NiceResolution.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_15_beta2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_15_beta2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/NiceResolution.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/ExcelUsage.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/ExcelUsage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$1.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$scrollBar.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main$scrollBar.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SPR.class" afterPath="$PROJECT_DIR$/../SPR/out/production/SPR/spr/SPR.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/target/SPR_analizer-V_1.1.jar" afterPath="$PROJECT_DIR$/../SPR/target/SPR_analizer-V_1.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/target/classes/spr/ExcelUsage.class" afterPath="$PROJECT_DIR$/../SPR/target/classes/spr/ExcelUsage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/target/classes/spr/Main$1.class" afterPath="$PROJECT_DIR$/../SPR/target/classes/spr/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/target/classes/spr/Main$scrollBar.class" afterPath="$PROJECT_DIR$/../SPR/target/classes/spr/Main$scrollBar.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/target/classes/spr/Main.class" afterPath="$PROJECT_DIR$/../SPR/target/classes/spr/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/target/original-SPR_analizer-V_1.1.jar" afterPath="$PROJECT_DIR$/../SPR/target/original-SPR_analizer-V_1.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Uvis/Main$1.class" afterPath="$PROJECT_DIR$/target/classes/Uvis/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Uvis/Main.class" afterPath="$PROJECT_DIR$/target/classes/Uvis/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/target/classes/frontend/Frontend.class" afterPath="$PROJECT_DIR$/../jetty_basic/target/classes/frontend/Frontend.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/target/classes/main/Main.class" afterPath="$PROJECT_DIR$/../jetty_basic/target/classes/main/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/target/classes/templater/PageGenerator.class" afterPath="$PROJECT_DIR$/../jetty_basic/target/classes/templater/PageGenerator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/SPR.iml" afterPath="$PROJECT_DIR$/../SPR/SPR.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/pom.xml" afterPath="$PROJECT_DIR$/../SPR/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/AxisAutoScale.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/AxisAutoScale.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/ExcelUsage.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/ExcelUsage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/Main.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/NiceResolution.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/NiceResolution.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../SPR/src/java/spr/SPR.java" afterPath="$PROJECT_DIR$/../SPR/src/java/spr/SPR.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_3_15_beta2.xml" afterPath="$PROJECT_DIR$/../SPR/.idea/libraries/Maven__org_apache_poi_poi_3_15.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Uvis/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Uvis/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../jetty_basic/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/src/main/java/frontend/Frontend.java" afterPath="$PROJECT_DIR$/../jetty_basic/src/main/java/frontend/Frontend.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/src/main/java/main/Main.java" afterPath="$PROJECT_DIR$/../jetty_basic/src/main/java/main/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/src/main/java/templater/PageGenerator.java" afterPath="$PROJECT_DIR$/../jetty_basic/src/main/java/templater/PageGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../jetty_basic/templates/indexPage/index.html" afterPath="$PROJECT_DIR$/../jetty_basic/templates/indexPage/index.html" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,30 +101,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="346" column="0" lean-forward="false" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
+            <state relative-caret-position="-179">
+              <caret line="442" column="0" lean-forward="false" selection-start-line="442" selection-start-column="0" selection-end-line="491" selection-end-column="6" />
               <folding>
                 <element signature="method#start#0;class#Main#0" expanded="false" />
                 <element signature="method#open#0;class#Main#0" expanded="false" />
-                <element signature="method#show#0;class#Main#0" expanded="false" />
+                <element signature="method#showMessage#0;class#Main#0" expanded="false" />
                 <element signature="method#showTable#0;class#Main#0" expanded="false" />
                 <element signature="method#makeItems#0;class#Main#0" expanded="false" />
                 <element signature="method#replase#0;class#Main#0" expanded="false" />
-                <element signature="method#makeData#0;class#Main#0" expanded="false" />
-                <element signature="method#addCurve#0;class#Main#0" expanded="false" />
-                <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-                <element signature="method#justFit#0;class#Main#0" expanded="false" />
+                <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
                 <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
-                <element signature="method#handle#0;class#17854:21881" expanded="false" />
-                <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
-                <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
-                <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
-                <element signature="method#styleSeries#0;class#Main#0" expanded="false" />
                 <element signature="method#setRowFactory#0;class#Main#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="series-line.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/series-line.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="series.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/series.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,11 +151,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-411">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="51" selection-end-column="12" />
+            <state relative-caret-position="374">
+              <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParseXML.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/ParseXML.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -162,9 +195,15 @@
       <find>replase</find>
       <find>//</find>
       <find>selected</find>
-      <find>selected</find>
       <find>wb</find>
       <find>setAxsisDiap</find>
+      <find>styleSeries</find>
+      <find>ZoomFreeHand</find>
+      <find>xScaleFactor</find>
+      <find>AxisAutoScale</find>
+      <find>XYChart.Series</find>
+      <find>css</find>
+      <find>allCurves</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -213,11 +252,11 @@
         <option value="$PROJECT_DIR$/src/main/java/Uvis/Borders2D.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/CurveMaxRecord.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Uvis/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/LineChartWithMarkers.java" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/ParseXML.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Uvis/AxisAutoScale.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Uvis/Main.java" />
       </list>
     </option>
   </component>
@@ -282,8 +321,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -370,7 +409,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -384,7 +423,7 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SPR" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2735632" />
@@ -547,6 +586,27 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="BatchConfigurationType" factoryName="Batch">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
@@ -927,6 +987,14 @@
       <workItem from="1482997490407" duration="900000" />
       <workItem from="1483002938214" duration="957000" />
       <workItem from="1483029331807" duration="357000" />
+      <workItem from="1485289046772" duration="224000" />
+      <workItem from="1485593039902" duration="4291000" />
+      <workItem from="1485616249644" duration="3552000" />
+      <workItem from="1485674025130" duration="14909000" />
+      <workItem from="1485694940723" duration="514000" />
+      <workItem from="1486318072353" duration="840000" />
+      <workItem from="1486369904455" duration="33000" />
+      <workItem from="1486370143498" duration="855000" />
     </task>
     <task id="LOCAL-00001" summary="UvisV0.1">
       <created>1473535386112</created>
@@ -1128,10 +1196,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76775000" />
+    <option name="totallyTimeSpent" value="101993000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1143,24 +1211,25 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3251634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23366013" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23343849" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22617246" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22547585" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39589906" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1256,7 +1325,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="38" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1265,41 +1334,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#start#0;class#Main#0" expanded="false" />
-            <element signature="method#open#0;class#Main#0" expanded="false" />
-            <element signature="method#show#0;class#Main#0" expanded="false" />
-            <element signature="method#showTable#0;class#Main#0" expanded="false" />
-            <element signature="method#makeItems#0;class#Main#0" expanded="false" />
-            <element signature="method#replase#0;class#Main#0" expanded="false" />
-            <element signature="method#makeData#0;class#Main#0" expanded="false" />
-            <element signature="method#addCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#justFit#0;class#Main#0" expanded="false" />
-            <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
-            <element signature="method#handle#0;class#17854:21881" expanded="false" />
-            <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
-            <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
-            <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
-            <element signature="method#styleSeries#0;class#Main#0" expanded="false" />
-            <element signature="method#setRowFactory#0;class#Main#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/LineChartWithMarkers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="79" column="9" lean-forward="false" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/test.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/chart/Axis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1328,20 +1362,12 @@
           <folding>
             <element signature="method#start#0;class#Main#0" expanded="false" />
             <element signature="method#open#0;class#Main#0" expanded="false" />
-            <element signature="method#show#0;class#Main#0" expanded="false" />
+            <element signature="method#showMessage#0;class#Main#0" expanded="false" />
             <element signature="method#showTable#0;class#Main#0" expanded="false" />
             <element signature="method#makeItems#0;class#Main#0" expanded="false" />
             <element signature="method#replase#0;class#Main#0" expanded="false" />
-            <element signature="method#makeData#0;class#Main#0" expanded="false" />
-            <element signature="method#addCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#justFit#0;class#Main#0" expanded="false" />
+            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
             <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
-            <element signature="method#handle#0;class#17854:21881" expanded="false" />
-            <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
-            <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
-            <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
-            <element signature="method#styleSeries#0;class#Main#0" expanded="false" />
             <element signature="method#setRowFactory#0;class#Main#0" expanded="false" />
           </folding>
         </state>
@@ -1361,20 +1387,12 @@
           <folding>
             <element signature="method#start#0;class#Main#0" expanded="false" />
             <element signature="method#open#0;class#Main#0" expanded="false" />
-            <element signature="method#show#0;class#Main#0" expanded="false" />
+            <element signature="method#showMessage#0;class#Main#0" expanded="false" />
             <element signature="method#showTable#0;class#Main#0" expanded="false" />
             <element signature="method#makeItems#0;class#Main#0" expanded="false" />
             <element signature="method#replase#0;class#Main#0" expanded="false" />
-            <element signature="method#makeData#0;class#Main#0" expanded="false" />
-            <element signature="method#addCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#justFit#0;class#Main#0" expanded="false" />
+            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
             <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
-            <element signature="method#handle#0;class#17854:21881" expanded="false" />
-            <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
-            <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
-            <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
-            <element signature="method#styleSeries#0;class#Main#0" expanded="false" />
             <element signature="method#setRowFactory#0;class#Main#0" expanded="false" />
           </folding>
         </state>
@@ -1499,13 +1517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="8510" column="0" lean-forward="false" selection-start-line="8510" selection-start-column="0" selection-end-line="8510" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/control/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1569,26 +1580,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/series.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="59" lean-forward="false" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/series-line.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Borders2D.java" />
     <entry file="file://$PROJECT_DIR$/dependency-reduced-pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="35" lean-forward="false" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1630,14 +1626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/ParseXML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="41" column="58" lean-forward="false" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1648,29 +1636,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Main.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="346" column="0" lean-forward="false" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/ParseXML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="5321" column="22" lean-forward="false" selection-start-line="5321" selection-start-column="22" selection-end-line="5321" selection-end-column="22" />
           <folding>
-            <element signature="method#start#0;class#Main#0" expanded="false" />
-            <element signature="method#open#0;class#Main#0" expanded="false" />
-            <element signature="method#show#0;class#Main#0" expanded="false" />
-            <element signature="method#showTable#0;class#Main#0" expanded="false" />
-            <element signature="method#makeItems#0;class#Main#0" expanded="false" />
-            <element signature="method#replase#0;class#Main#0" expanded="false" />
-            <element signature="method#makeData#0;class#Main#0" expanded="false" />
-            <element signature="method#addCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#removeCurve#0;class#Main#0" expanded="false" />
-            <element signature="method#justFit#0;class#Main#0" expanded="false" />
-            <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
-            <element signature="method#handle#0;class#17854:21881" expanded="false" />
-            <element signature="method#getSceneShiftX#0;class#Main#0" expanded="false" />
-            <element signature="method#getSceneShiftY#0;class#Main#0" expanded="false" />
-            <element signature="method#ZoomFreeHand#0;class#Main#0" expanded="false" />
-            <element signature="method#styleSeries#0;class#Main#0" expanded="false" />
-            <element signature="method#setRowFactory#0;class#Main#0" expanded="false" />
+            <element signature="e#388026#388058#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5814">
+          <caret line="584" column="9" lean-forward="false" selection-start-line="584" selection-start-column="9" selection-end-line="584" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/series.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/series-line.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/modules.uml" />
+    <entry file="file://$PROJECT_DIR$/classDependenciesUvis.uml">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="758.0" y="-730.0">Uvis.ParseXML.WorkSheet</node>
+            <node x="398.0" y="-327.0">Uvis.AxisAutoScale</node>
+            <node x="654.0" y="-325.0">Uvis.LineChartWithMarkers</node>
+            <node x="67.0" y="-353.0">Uvis.CurveMaxRecord</node>
+            <node x="821.0" y="-1008.0">Uvis.ParseXML</node>
+            <node x="28.0" y="-1148.0">Uvis.Main</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="Uvis.ParseXML.WorkSheet" target="Uvis.ParseXML">
+              <point x="0.0" y="-81.5" />
+              <point x="0.0" y="37.5" />
+            </edge>
+            <edge source="Uvis.Main" target="Uvis.CurveMaxRecord">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="Uvis.Main" target="Uvis.ParseXML">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="Uvis.ParseXML" target="Uvis.ParseXML.WorkSheet">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="Uvis.Main" target="Uvis.LineChartWithMarkers">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="Uvis.Main" target="Uvis.AxisAutoScale">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="683.0" y="-850.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Inner Classes</Category>
+            <Category>Constructors</Category>
+          </Categories>
+          <SCOPE>Project Files</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>
@@ -1682,11 +1746,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Uvis/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-411">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="51" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="-179">
+          <caret line="442" column="0" lean-forward="false" selection-start-line="442" selection-start-column="0" selection-end-line="491" selection-end-column="6" />
+          <folding>
+            <element signature="method#start#0;class#Main#0" expanded="false" />
+            <element signature="method#open#0;class#Main#0" expanded="false" />
+            <element signature="method#showMessage#0;class#Main#0" expanded="false" />
+            <element signature="method#showTable#0;class#Main#0" expanded="false" />
+            <element signature="method#makeItems#0;class#Main#0" expanded="false" />
+            <element signature="method#replase#0;class#Main#0" expanded="false" />
+            <element signature="method#setAxsisDiap#0;class#Main#0" expanded="false" />
+            <element signature="method#solverPoly#0;class#Main#0" expanded="false" />
+            <element signature="method#setRowFactory#0;class#Main#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

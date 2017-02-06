@@ -13,7 +13,7 @@ public class Main {
         Frontend frontend = new Frontend();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(frontend), "/authform");
+        context.addServlet(new ServletHolder(frontend), "/index");
 
         Server server = new Server(8080);
         server.setHandler(context);

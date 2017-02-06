@@ -55,7 +55,7 @@ public class Main extends Application {
     private Button deleteButton;
     private Button saveButton;
     private Button fitButton;
-    private final int StageHight1=160,StageHight2=500;
+    private final int StageHight2=500;
     private TextField bookName;
     private ObservableList<String> xlsbooks;
     private ExcelUsage toExcel;
@@ -155,10 +155,7 @@ public class Main extends Application {
         cb3.getSelectionModel().selectedIndexProperty().addListener(
                 ((observable, oldValue, newValue) -> {
                     int it=newValue.intValue();
-                    scroll2.s.setMin(scroll1.s.getValue());
-                    scroll2.s.setMax(scroll1.s.getValue()+cb.getValue()-1);
-                    setAxis(read,(int)scroll1.s.getValue(),cb.getValue());
-                    analiticSLogic((int)scroll4.s.getValue(),(int)scroll5.s.getValue(),it);
+                    analiticSLogic((int)scroll4.s.getValue(),(int)scroll5.s.getValue(),it-1);
                 }));
 
 //      слайдер уточнення
@@ -222,7 +219,7 @@ public class Main extends Application {
                 toExcel.fragToXLS(bookName.getText(),(int)scroll1.s.getValue(),cb.getValue(),
                         (int)scroll4.s.getValue(),(int)scroll5.s.getValue(),cb3.getValue(),selectCH.getValue()  );
             } catch (IOException e) {
-                show(e.getMessage(),"error");
+                showMessage(e.getMessage(),"error");
             }
         });
 
@@ -236,7 +233,7 @@ public class Main extends Application {
             if (file != null) {
                 try {toExcel.allToExcell(file.getPath());
                 } catch (IOException e1) {
-                    show(e1.getMessage(),"error");}
+                    showMessage(e1.getMessage(),"error");}
             }
         });
 
@@ -420,7 +417,7 @@ public class Main extends Application {
             bookName.setText(selectCH.getValue()+"from"+
                     RoundN(read.timeMas[(int)scroll1.s.getValue()],1)
                     +"to"+RoundN(offerMax,1));
-            currentStage.setHeight(StageHight2+40);
+            currentStage.setHeight(StageHight2+110);
             currentStage.setScene(scMain);
         }
         if(val==3) {
@@ -483,7 +480,7 @@ public class Main extends Application {
             return line;
         }
     }
-    private static void show(String message, String title)
+    private static void showMessage(String message, String title)
     {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -507,8 +504,7 @@ public class Main extends Application {
 
         @Override
         public void handle(MouseEvent mouseEvent) {
-            if (mouseEvent.getButton() == MouseButton.PRIMARY)
-            {
+            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 if (mouseEvent.getEventType() == MouseEvent.MOUSE_PRESSED) {
                     rect.setX(mouseEvent.getX());
                     rect.setY(mouseEvent.getY());
@@ -519,70 +515,34 @@ public class Main extends Application {
                     rectY.set(mouseEvent.getY());
                 } else if (mouseEvent.getEventType() == MouseEvent.MOUSE_RELEASED) {
 
-                    if ((rectinitX.get() >= rectX.get())&&(rectinitY.get() >= rectY.get()))
-                    {
-                        //Condizioni Iniziali
-                        LineChart<Number, Number> lineChart = (LineChart<Number, Number>) chartBox.getCenter();
+                    if ((rectinitX.get() >= rectX.get()) && (rectinitY.get() >= rectY.get())) {
+                        scaleXY(initXLowerBound,initXUpperBound,initYLowerBound,initYUpperBound);
 
-                        ((NumberAxis) lineChart.getXAxis()).setLowerBound(initXLowerBound);
-                        ((NumberAxis) lineChart.getXAxis()).setUpperBound(initXUpperBound);
-
-                        ((NumberAxis) lineChart.getYAxis()).setLowerBound(initYLowerBound);
-                        ((NumberAxis) lineChart.getYAxis()).setUpperBound(initYUpperBound);
-
-                        ZoomFreeHand(path, 1.0, 1.0, 0, 0);
-
-                    }
-                    else
-                    {
+                    } else {
                         double Tgap;
-                        double newLowerBound, newUpperBound, axisShift;
-                        double xScaleFactor, yScaleFactor;
-                        double xNewLowerBound, xNewUpperBound;
+                        double newLowerBound, newUpperBound, xAxisShift,yAxisShift;
                         double yNewLowerBound, yNewUpperBound;
 
                         LineChart<Number, Number> lineChart = (LineChart<Number, Number>) chartBox.getCenter();
 
                         NumberAxis yAxis = (NumberAxis) lineChart.getYAxis();
-                        Tgap = yAxis.getHeight()/(yAxis.getUpperBound() - yAxis.getLowerBound());
-                        axisShift = getSceneShiftY(yAxis);
+                        Tgap = yAxis.getHeight() / (yAxis.getUpperBound() - yAxis.getLowerBound());
+                        yAxisShift = getSceneShiftY(yAxis);
+                        yNewUpperBound = yAxis.getUpperBound() - ((rectinitY.get() - yAxisShift) / Tgap);
+                        yNewLowerBound = yAxis.getUpperBound() - ((rectY.get() - yAxisShift) / Tgap);
 
-                        newUpperBound = yAxis.getUpperBound() - ((rectinitY.get() - axisShift) / Tgap);
-                        newLowerBound = yAxis.getUpperBound() - (( rectY.get() - axisShift) / Tgap);
-
-                        if (newUpperBound > yAxis.getUpperBound())
-                            newUpperBound = yAxis.getUpperBound();
-
-                        yScaleFactor = (initYUpperBound - initYLowerBound)/(newUpperBound - newLowerBound);
-                        yNewLowerBound = newLowerBound;
-                        yNewUpperBound = newUpperBound;
+                        if (yNewUpperBound > yAxis.getUpperBound())yNewUpperBound = yAxis.getUpperBound();
 
                         NumberAxis xAxis = (NumberAxis) lineChart.getXAxis();
+                        Tgap = xAxis.getWidth() / (xAxis.getUpperBound() - xAxis.getLowerBound());
+                        xAxisShift = getSceneShiftX(xAxis);
+                        newLowerBound = ((rectinitX.get() - xAxisShift) / Tgap) + xAxis.getLowerBound();
+                        newUpperBound = ((rectX.get() - xAxisShift) / Tgap) + xAxis.getLowerBound();
 
-                        Tgap = xAxis.getWidth()/(xAxis.getUpperBound() - xAxis.getLowerBound());
+                        if (newUpperBound > xAxis.getUpperBound())newUpperBound = xAxis.getUpperBound();
 
-                        axisShift = getSceneShiftX(xAxis);
-
-
-                        newLowerBound = ((rectinitX.get() - axisShift) / Tgap) + xAxis.getLowerBound();
-                        newUpperBound = ((rectX.get() - axisShift) / Tgap) + xAxis.getLowerBound();
-
-                        if (newUpperBound > xAxis.getUpperBound())
-                            newUpperBound = xAxis.getUpperBound();
-
-                        xScaleFactor = (initXUpperBound - initXLowerBound)/(newUpperBound - newLowerBound);
-                        xNewLowerBound = newLowerBound;
-                        xNewUpperBound = newUpperBound;
-
-                        yAxis.setLowerBound(yNewLowerBound);
-                        yAxis.setUpperBound(yNewUpperBound);
-
-                        xAxis.setLowerBound( xNewLowerBound );
-                        xAxis.setUpperBound( xNewUpperBound );
-                        ZoomFreeHand(path, xScaleFactor, yScaleFactor, xNewLowerBound, yNewUpperBound);
+                        scaleXY(newLowerBound, newUpperBound,yNewLowerBound, yNewUpperBound);
                     }
-
-                    // Hide the rectangle
                     rectX.set(0);
                     rectY.set(0);
                 }
@@ -606,6 +566,16 @@ public class Main extends Application {
             node = node.getParent();
         } while (node != null);
         return shift;
+    }
+    private void scaleXY(double xMin,double xMax,double yMin,double yMax){
+        AxisAutoScale newYscale = new AxisAutoScale(yMin, yMax);
+        yAxis.setLowerBound(newYscale.min);
+        yAxis.setUpperBound(newYscale.max);
+        yAxis.setTickUnit(newYscale.tick);
+        AxisAutoScale newXscale = new AxisAutoScale(xMin, xMax);
+        xAxis.setLowerBound(newXscale.min);
+        xAxis.setUpperBound(newXscale.max);
+        xAxis.setTickUnit(newXscale.tick);
     }
     private void ZoomFreeHand(Path path, double xScaleFactor, double yScaleFactor, double xaxisShift, double yaxisShift) {
 

@@ -73,11 +73,12 @@ class ExcelUsage {
         style2.setBorderTop(BorderStyle.MEDIUM);
 
         int start1,start2,finish1,finish2;
-        start1=s2-s+3;  finish1=s2-s+cb2+3;
-        start2=s3-s+3;  finish2=s3-s+cb2+3;
+        start1=s2-s+1;  finish1=s2-s+cb2-1;
+        start2=s3-s+1;  finish2=s3-s+cb2-1;
+        int st1=start1+1,st2=start2+1,fin1=finish1+1,fin2=finish2+1;
 
-        for(int i=start1-1;i<finish1;i++)sh.getRow(i).getCell(can).setCellStyle(style);
-        for(int i=start2-1;i<finish2;i++)sh.getRow(i).getCell(can).setCellStyle(style);
+        for(int i=start1;i<=finish1;i++)sh.getRow(i).getCell(can).setCellStyle(style);
+        for(int i=start2;i<=finish2;i++)sh.getRow(i).getCell(can).setCellStyle(style);
 
         cellSt(sh,style2,0,6,"Осн.  канал");
         cellSt(sh,style2,1,6,"M,      deg");
@@ -86,10 +87,10 @@ class ExcelUsage {
         cellSt(sh,style2,2,5,"Початок");
         cellSt(sh,style2,3,5,"Кінець");
 
-        cellIfF(sh,style2,can,2,6,"AVERAGE(B"+start1+":B"+finish1+")","AVERAGE(C"+start1+":C"+finish1+")");
-        cellIfF(sh,style2,can,3,6,"AVERAGE(B"+start2+":B"+finish2+")","AVERAGE(C"+start2+":C"+finish2+")");
-        cellIfF(sh,style2,can,2,7,"STDEV(B"+start1+":B"+finish1+")*1000","STDEV(C"+start1+":C"+finish1+")*1000");
-        cellIfF(sh,style2,can,3,7,"STDEV(B"+start2+":B"+finish2+")*1000","STDEV(C"+start2+":C"+finish2+")*1000");
+        cellIfF(sh,style2,can,2,6,"AVERAGE(B"+st1+":B"+fin1+")","AVERAGE(C"+st1+":C"+fin1+")");
+        cellIfF(sh,style2,can,3,6,"AVERAGE(B"+st2+":B"+fin2+")","AVERAGE(C"+st2+":C"+fin2+")");
+        cellIfF(sh,style2,can,2,7,"STDEV(B"+st1+":B"+fin1+")*1000","STDEV(C"+st1+":C"+fin1+")*1000");
+        cellIfF(sh,style2,can,3,7,"STDEV(B"+st2+":B"+fin2+")*1000","STDEV(C"+st2+":C"+fin2+")*1000");
 
         cellSt(sh,style2,4,6,"Доп. канал");
         cellSt(sh,style2,5,6,"M,      deg");
@@ -98,29 +99,40 @@ class ExcelUsage {
         cellSt(sh,style2,6,5,"Початок");
         cellSt(sh,style2,7,5,"Кінець ");
 
-        cellNIfF(sh,style2,can,6,6,"AVERAGE(B"+start1+":B"+finish1+")","AVERAGE(C"+start1+":C"+finish1+")");
-        cellNIfF(sh,style2,can,7,6,"AVERAGE(B"+start2+":B"+finish2+")","AVERAGE(C"+start2+":C"+finish2+")");
-        cellNIfF(sh,style2,can,6,7,"STDEV(B"+start1+":B"+finish1+")*1000","STDEV(C"+start1+":C"+finish1+")*1000");
-        cellNIfF(sh,style2,can,7,7,"STDEV(B"+start2+":B"+finish2+")*1000","STDEV(C"+start2+":C"+finish2+")*1000");
+        cellNIfF(sh,style2,can,6,6,"AVERAGE(B"+st1+":B"+fin1+")","AVERAGE(C"+st1+":C"+fin1+")");
+        cellNIfF(sh,style2,can,7,6,"AVERAGE(B"+st2+":B"+fin2+")","AVERAGE(C"+st2+":C"+fin2+")");
+        cellNIfF(sh,style2,can,6,7,"STDEV(B"+st1+":B"+fin1+")*1000","STDEV(C"+st1+":C"+fin1+")*1000");
+        cellNIfF(sh,style2,can,7,7,"STDEV(B"+st2+":B"+fin2+")*1000","STDEV(C"+st2+":C"+fin2+")*1000");
 
-        cellSt(sh,style2,9,5,"Sm, mdeg");                   cellSt(sh,style2,9,7,"Sr, mdeg");
-        cellStF(sh,style2,9,6,"(G4-G3)*1000");              cellStF(sh,style2,9,8,"(G8-G7)*1000");
-        cellSt(sh,style2,10,5,"NM, mdeg");                  cellSt(sh,style2,10,7,"NR, mdeg");
-        cellStF(sh,style2,10,6,"SQRT(H4*H4+H3*H3)");        cellStF(sh,style2,10,8,"SQRT(H8*H8+H7*H7)");
+        cellSt(sh,style2,9,5,"SignalM, mdeg");
+        cellStF(sh,style2,9,6,"(G4-G3)*1000");
+        cellSt(sh,style2,9,7,"SignalSD, mdeg");
+        cellStF(sh,style2,9,8,"SQRT(H4*H4+H3*H3)");
+        sh.getRow(9).getCell(5).setCellStyle(style);
+        sh.getRow(9).getCell(6).setCellStyle(style);
 
-        cellSt(sh,style2,11,5,"t0, min");                   cellSt(sh,style2,11,7,"dt, min");
-        cellStF(sh,style2,11,6,"A"+finish1+"-A"+start1);    cellStF(sh,style2,11,8,"A"+start2+"-A"+finish1);
-        if(istemp){cellSt(sh,style2,12,5,"TM, °C");         cellSt(sh,style2,12,7,"TR, °C");
-            cellStF(sh,style2,12,6, "AVERAGE(D"+start1+":D"+finish1+")");
-            cellStF(sh,style2,12,8,"AVERAGE(D"+start2+":D"+finish2+")");}
+        cellSt(sh,style2,10,5,"ReferenceM, mdeg");
+        cellStF(sh,style2,10,6,"(G8-G7)*1000");
+        cellSt(sh,style2,10,7,"ReferenceSD, mdeg");
+        cellStF(sh,style2,10,8,"SQRT(H8*H8+H7*H7)");
+
+        cellSt(sh,style2,11,5,"timeOfAveraging, min");
+        cellSt(sh,style2,11,7,"SignalDuration, min");
+        cellStF(sh,style2,11,6,"A"+fin1+"-A"+st1);
+        cellStF(sh,style2,11,8,"A"+st2+"-A"+fin1);
+        if(istemp){ cellSt(sh,style2,12,5,"T start, °C");
+                    cellSt(sh,style2,12,7,"T finish, °C");
+                    cellStF(sh,style2,12,6, "AVERAGE(D"+st1+":D"+fin1+")");
+                    cellStF(sh,style2,12,8,"AVERAGE(D"+st2+":D"+fin2+")");}
 
         for(int i=0;i<8;i++)sh.autoSizeColumn(i);
 
-        sh.addMergedRegion(new CellRangeAddress(0,0,6,7));  sh.addMergedRegion(new CellRangeAddress(4,4,6,7));
+        sh.addMergedRegion(new CellRangeAddress(0,0,6,7));
+        sh.addMergedRegion(new CellRangeAddress(4,4,6,7));
         /*                                            Plot                                              */
 
         Drawing drawing = sh.createDrawingPatriarch();
-        ClientAnchor anchor = drawing.createAnchor(0,0,0,0,5,14,13,34);//_ _ _ _ x0 y0 xf yf
+        ClientAnchor anchor = drawing.createAnchor(0,0,0,0,5,14,13,34);
 
         Chart chart = drawing.createChart(anchor);
         ChartLegend legend = chart.getOrCreateLegend();
@@ -129,25 +141,27 @@ class ExcelUsage {
         ScatterChartData data = chart.getChartDataFactory().createScatterChartData();
 
         ArrayList<Double> mas = new ArrayList<>();
-        for(int i=s;(i<s+cb)&&(i<table.size());i++)
-            mas.add(table.get(i).get(can));
+        for(int i=s;(i<s+cb)&&(i<table.size());i++) mas.add(table.get(i).get(can));
 
         ValueAxis bottomAxis = chart.getChartAxisFactory().createValueAxis(AxisPosition.BOTTOM);
-        bottomAxis.setMinimum(RoundN(table.get(s).get(0),0));
-        bottomAxis.setMaximum(table.get(s+cb).get(0));
+        AxisAutoScale xRes= new AxisAutoScale(table.get(s).get(0),table.get(s+cb).get(0));
+        bottomAxis.setMinimum(xRes.min);
+        bottomAxis.setMaximum(xRes.max);
         ValueAxis leftAxis = chart.getChartAxisFactory().createValueAxis(AxisPosition.LEFT);
+
         double min=RoundN(Collections.min(mas),4);
         double max=RoundN(Collections.max(mas),4);
-        leftAxis.setMinimum(RoundN(min-(max-min)/10d,4));
-        leftAxis.setMaximum(RoundN(max+(max-min)/10d,4));
+        AxisAutoScale yRes= new AxisAutoScale(min,max);
+        leftAxis.setMinimum(yRes.min);
+        leftAxis.setMaximum(yRes.max);
         leftAxis.setCrosses(AxisCrosses.MIN);
 
         ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb, 0, 0));
         ChartDataSource<Number> ys1 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb,can,can));
-        ChartDataSource<Number> x2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(s2-s+1,s2-s+cb2+1, 0, 0));
-        ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(s2-s+1,s2-s+cb2+1,can,can));
-        ChartDataSource<Number> x3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(s3-s+1,s3-s+cb2+1, 0, 0));
-        ChartDataSource<Number> ys3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(s3-s+1,s3-s+cb2+1,can,can));
+        ChartDataSource<Number> x2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1, 0, 0));
+        ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1,can,can));
+        ChartDataSource<Number> x3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2, 0, 0));
+        ChartDataSource<Number> ys3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2,can,can));
 
 
         data.addSerie(xs, ys1);       data.addSerie(x2, ys2);       data.addSerie(x3, ys3);
@@ -159,10 +173,12 @@ class ExcelUsage {
     }
 
     private void cellSt(Sheet sh,CellStyle st,int row,int cell,String s){
-        sh.getRow(row).createCell(cell).setCellValue(s);sh.getRow(row).getCell(cell).setCellStyle(st);
+        sh.getRow(row).createCell(cell).setCellValue(s);
+        sh.getRow(row).getCell(cell).setCellStyle(st);
     }
     private void cellStF(Sheet sh,CellStyle st,int row,int cell,String s){
-        sh.getRow(row).createCell(cell).setCellFormula(s);sh.getRow(row).getCell(cell).setCellStyle(st);
+        sh.getRow(row).createCell(cell).setCellFormula(s);
+        sh.getRow(row).getCell(cell).setCellStyle(st);
     }
     private void cellIfF(Sheet sh,CellStyle st,int can,int row,int cell,String s1,String s2){
         if(can==1) sh.getRow(row).createCell(cell).setCellFormula(s1);

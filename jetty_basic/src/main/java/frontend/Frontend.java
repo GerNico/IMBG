@@ -15,16 +15,17 @@ import java.util.Map;
  */
 public class Frontend extends HttpServlet {
 
-    private String login = "";
+    private String firstName = "",lastName="";
     private double one=0,two=0;
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException, IOException {
 
         Map<String, Object> pageVariables = new HashMap<>();
-        pageVariables.put("lastLogin", login == null ? "" : login);
+        pageVariables.put("firstName", firstName == null ? "" :firstName );
+        pageVariables.put("lastName",  firstName == null ? "" :lastName );
 
-        response.getWriter().println(PageGenerator.getPage("authform.html", pageVariables));
+        response.getWriter().println(PageGenerator.getPage("index.html", pageVariables));
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
@@ -34,21 +35,16 @@ public class Frontend extends HttpServlet {
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws ServletException, IOException {
 
-        login = request.getParameter("login");
-        one = Double.parseDouble(request.getParameter("one"));
-        two = Double.parseDouble(request.getParameter("two"));
+        firstName = request.getParameter("firstName");
+        lastName =  request.getParameter("lastName");
 
-        response.setContentType("text/html;charset=utf-8");
-
-        if (login == null || login.isEmpty()) {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        } else {
-            response.setStatus(HttpServletResponse.SC_OK);
-        }
 
         Map<String, Object> pageVariables = new HashMap<>();
-        pageVariables.put("lastLogin", login == null ? "" : one+two);
+        pageVariables.put("firstName", firstName == null ? "" :firstName );
+        pageVariables.put("lastName",  firstName == null ? "" :lastName );
+        System.out.println("First name :"+firstName);
+        System.out.println("Last name :"+lastName);
 
-        response.getWriter().println(PageGenerator.getPage("authform.html", pageVariables));
+        response.getWriter().println(PageGenerator.getPage("index.html", pageVariables));
     }
 }
