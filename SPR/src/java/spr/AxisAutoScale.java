@@ -1,4 +1,4 @@
-package spr;
+package Uvis;
 
 /**
  * Created by Matsishin on 22.12.2016.
@@ -6,12 +6,12 @@ package spr;
  * @author Matsishin Nicolas
  *         this class just makes nice axis scale division
  */
-class NiceResolution {
+class AxisAutoScale {
 
     double min, max;
     double tick;
 
-    NiceResolution(double begin, double end) {
+    AxisAutoScale(double begin, double end) {
         if (begin > end) {
             this.max = begin;
             this.min = end;
