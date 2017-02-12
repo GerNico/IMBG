@@ -12,27 +12,27 @@ import java.util.ArrayList;
  * @author Matsishin Nicolas
  *         This class is for parsing XML files of Nanodrop2000 spectrometr report
  */
-class ParseXML {
+class spectrumXML {
 
-    ArrayList<WorkSheet> workSheets = new ArrayList<>();
+    ArrayList<Spectrum> spectres = new ArrayList<>();
 
-    class WorkSheet {
+    class Spectrum {
         String title;
         String time;
         ArrayList<Double> wavelength = new ArrayList<>();
-        ArrayList<Double> absorbance = new ArrayList<>();
+        ArrayList<Double> absorbency = new ArrayList<>();
         boolean selected = false;
 
-        WorkSheet(String title, String time, ArrayList<Double> w, ArrayList<Double> a) {
+        Spectrum(String title, String time, ArrayList<Double> w, ArrayList<Double> a) {
             this.title = title;
             this.time = time;
             this.wavelength = w;
-            this.absorbance = a;
+            this.absorbency = a;
         }
     }
 
     //This function is called recursively
-    ParseXML(Document document) {
+    spectrumXML(Document document) {
         //Normalize the XML Structure; It's just too important !!
         document.getDocumentElement().normalize();
 
@@ -59,8 +59,8 @@ class ParseXML {
                     tableA.add(Double.parseDouble(row.item(3).getLastChild().getTextContent()));
 
                 }
-                WorkSheet workSheet = new WorkSheet(titleCell, timeCell, tableW, tableA);
-                workSheets.add(workSheet);
+                Spectrum workSheet = new Spectrum(titleCell, timeCell, tableW, tableA);
+                spectres.add(workSheet);
             }
         }
     }

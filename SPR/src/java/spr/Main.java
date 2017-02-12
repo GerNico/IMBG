@@ -15,6 +15,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -73,6 +74,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setTitle("SPR Analyzer");
+        stage.getIcons().add(new Image("APPLICATION_ICON.jpg"));
+
         MenuBar menuBar = new MenuBar();
         Menu menu = new Menu("Режим");
 

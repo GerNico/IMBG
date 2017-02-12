@@ -15,6 +15,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -54,7 +55,7 @@ public class Main extends Application {
     private ChoiceBox<Double> st, fin;
     private ChoiceBox<Integer> order;
     private Stage MyStage;
-    private ParseXML wb;
+    private spectrumXML wb;
     private Menu spectra;
     private Path path;
     private BorderPane chartBox;
@@ -71,19 +72,23 @@ public class Main extends Application {
     private static final String[] colors = {"Coral", "Darkred", "Deeppink", "Lightgreen", "Mediumblue", "Olivedrab",
             "Rosybrown", "Blue","Orange", "Peru", "Aquamarine", "Gold", "orchid", "cyan", "indigo", "lightseagreen",
             "plum","firebrick", "magent", "seagreen", "purple", "green", "black"};
+    private ExcelUsage fileToExcell;
+    private MenuItem fileSave;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         MyStage = primaryStage;
 
-        MyStage.setTitle("Select the file");
+        MyStage.setTitle("UVisAnalizer");
+        MyStage.getIcons().add(new Image("spectrum.jpg"));
         MenuBar menuBar = new MenuBar();
         Menu menu = new Menu("Menu");
         spectra = new Menu("Spectrum");
 
-        MenuItem fileOpen = new MenuItem("Select the file");
+        MenuItem fileOpen = new MenuItem("Open file");
         fileOpen.setOnAction(event -> open());
-        MenuItem fileSave = new MenuItem("Save file");
+        fileSave = new MenuItem("Save file");
+        fileSave.setDisable(true);
 
         menu.getItems().addAll(fileOpen, fileSave);
         menuBar.getMenus().addAll(menu, spectra);
@@ -163,14 +168,34 @@ public class Main extends Application {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
                 Document document = builder.parse(file);
-                wb = new ParseXML(document);
+                wb = new spectrumXML(document);
                 makeItems();
                 makeData();
-                setAxsisDiap(wb, 0, wb.workSheets.get(0).wavelength.size() - 1);
+                setAxsisDiap(wb, 0, wb.spectres.get(0).wavelength.size() - 1);
+                fileToExcell=new ExcelUsage(wb,st.getValue(),fin.getValue());
+                fileSave.setDisable(false);
+                fileSave.setOnAction(event -> saveExcell());
+
+
             } catch (ParserConfigurationException | SAXException | IOException e) {
                 showMessage(e.getMessage());
             }
         }
+    }
+
+    private void saveExcell() {
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save your file");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Excel","*.xlsx"));
+
+        fileSave.setOnAction(event -> {
+            File file = fileChooser.showSaveDialog(MyStage);
+            if (file != null) {
+                try {fileToExcell.allToExcell(file.getPath());
+                } catch (IOException e1) {
+                    showMessage(e1.getMessage());}
+            }
+        });
     }
 
     private static void showMessage(String message) {
@@ -271,27 +296,27 @@ public class Main extends Application {
 
     private void makeItems() {
         ArrayList<CheckMenuItem> items = new ArrayList<>();
-        for (int i = 0; i < wb.workSheets.size(); i++) {
-            CheckMenuItem item = new CheckMenuItem(wb.workSheets.get(i).title);
+        for (int i = 0; i < wb.spectres.size(); i++) {
+            CheckMenuItem item = new CheckMenuItem(wb.spectres.get(i).title);
             item.setSelected(false);
             int finalI = i;
             item.setOnAction(event -> {
-                wb.workSheets.get(finalI).selected = item.isSelected();
+                wb.spectres.get(finalI).selected = item.isSelected();
                 if (item.isSelected()) addCurve(finalI);
                 else removeCurve(finalI);
-                setAxsisDiap(wb, 0, wb.workSheets.get(0).wavelength.size() - 1);
+                setAxsisDiap(wb, 0, wb.spectres.get(0).wavelength.size() - 1);
                 styleSeries();
             });
             items.add(item);
         }
         items.get(0).setSelected(true);
         spectra.getItems().addAll(items);
-        for (int i = 0; i < wb.workSheets.get(0).wavelength.size(); i += 10)
-            wl.add(wb.workSheets.get(0).wavelength.get(i));
+        for (int i = 0; i < wb.spectres.get(0).wavelength.size(); i += 10)
+            wl.add(wb.spectres.get(0).wavelength.get(i));
 
-        for (int i = 0; i < wb.workSheets.size(); i++)
-            wb.workSheets.get(i).selected = false;
-        wb.workSheets.get(0).selected = true;
+        for (int i = 0; i < wb.spectres.size(); i++)
+            wb.spectres.get(i).selected = false;
+        wb.spectres.get(0).selected = true;
 
         st.setValue(460.0);
         fin.setValue(580.0);
@@ -324,12 +349,12 @@ public class Main extends Application {
     private void makeData() {
         Double A;
         allCurves.clear();
-        for (int i = 0; i < wb.workSheets.size(); i++) {
+        for (int i = 0; i < wb.spectres.size(); i++) {
             XYChart.Series seria = new XYChart.Series();
-            if (!wb.workSheets.get(i).selected) continue;
-            for (int j = 0; j < wb.workSheets.get(i).wavelength.size(); j++) {
-                A = wb.workSheets.get(i).absorbance.get(j);
-                seria.getData().add(new XYChart.Data(wb.workSheets.get(i).wavelength.get(j), A));
+            if (!wb.spectres.get(i).selected) continue;
+            for (int j = 0; j < wb.spectres.get(i).wavelength.size(); j++) {
+                A = wb.spectres.get(i).absorbency.get(j);
+                seria.getData().add(new XYChart.Data(wb.spectres.get(i).wavelength.get(j), A));
             }
             seria.setName("Curve0");
             allCurves.add(seria);
@@ -340,9 +365,9 @@ public class Main extends Application {
     private void addCurve(int i) {
         XYChart.Series seria = new XYChart.Series();
         Double A;
-        for (int j = 0; j < wb.workSheets.get(i).wavelength.size(); j++) {
-            A = wb.workSheets.get(i).absorbance.get(j);
-            seria.getData().add(new XYChart.Data(wb.workSheets.get(i).wavelength.get(j), A));
+        for (int j = 0; j < wb.spectres.get(i).wavelength.size(); j++) {
+            A = wb.spectres.get(i).absorbency.get(j);
+            seria.getData().add(new XYChart.Data(wb.spectres.get(i).wavelength.get(j), A));
         }
         seria.setName("Curve"+i);
         mainChart.getData().add(seria);
@@ -358,19 +383,19 @@ public class Main extends Application {
 
     }
 
-    private void setAxsisDiap(ParseXML WB, int start, int finish) {
+    private void setAxsisDiap(spectrumXML WB, int start, int finish) {
 
         Double maxA = 0d, minA = 0d;
 
-        for (int i = 0; i < WB.workSheets.size(); i++) {
-            if (WB.workSheets.get(i).selected) {
-                Double maxAi = Collections.max(WB.workSheets.get(i).absorbance.subList(start, finish));
-                Double minAi = Collections.min(WB.workSheets.get(i).absorbance.subList(start, finish));
+        for (int i = 0; i < WB.spectres.size(); i++) {
+            if (WB.spectres.get(i).selected) {
+                Double maxAi = Collections.max(WB.spectres.get(i).absorbency.subList(start, finish));
+                Double minAi = Collections.min(WB.spectres.get(i).absorbency.subList(start, finish));
                 if (minA > minAi) minA = minAi;
                 if (maxA < maxAi) maxA = maxAi;
             }
         }
-        Double x1 = WB.workSheets.get(0).wavelength.get(start), x2 = WB.workSheets.get(0).wavelength.get(finish);
+        Double x1 = WB.spectres.get(0).wavelength.get(start), x2 = WB.spectres.get(0).wavelength.get(finish);
         if((x1!=x2)&&(minA - (maxA - minA) / 10!=maxA + 2 * (maxA - minA) / 10))
         scaleXY(x1,x2,minA - (maxA - minA) / 10, maxA + 2 * (maxA - minA) / 10);
 
@@ -385,15 +410,15 @@ public class Main extends Application {
         long recordIterator = 1;
         mainChart.getData().clear();
         data.clear();
-        for (int k = 0; k < wb.workSheets.size(); k++) {
-            if (!wb.workSheets.get(k).selected) continue;
-            int i0 = wb.workSheets.get(k).wavelength.indexOf(st.getValue());
-            int il = wb.workSheets.get(k).wavelength.indexOf(fin.getValue());
+        for (int k = 0; k < wb.spectres.size(); k++) {
+            if (!wb.spectres.get(k).selected) continue;
+            int i0 = wb.spectres.get(k).wavelength.indexOf(st.getValue());
+            int il = wb.spectres.get(k).wavelength.indexOf(fin.getValue());
             int len = il - i0;
             Double[] x = new Double[len];
-            for (int j = 0; j < len; j++) x[j] = wb.workSheets.get(k).wavelength.get(i0 + j);
+            for (int j = 0; j < len; j++) x[j] = wb.spectres.get(k).wavelength.get(i0 + j);
             Double[] y = new Double[len];
-            for (int j = 0; j < len; j++) y[j] = wb.workSheets.get(k).absorbance.get(i0 + j);
+            for (int j = 0; j < len; j++) y[j] = wb.spectres.get(k).absorbency.get(i0 + j);
 
             final WeightedObservedPoints obs = new WeightedObservedPoints();
             for (int i = 0; i < len; i++) obs.add(x[i], y[i]);
@@ -410,14 +435,14 @@ public class Main extends Application {
             mainChart.getData().addAll(seria, seria2);
 
             double[] coefs = polyFunc.getCoefficients();
-            CurveMaxRecord newLine = new CurveMaxRecord(recordIterator++, wb.workSheets.get(k).title,
+            CurveMaxRecord newLine = new CurveMaxRecord(recordIterator++, wb.spectres.get(k).title,
                     new BigDecimal(solverPoly(coefs)).setScale(2, RoundingMode.HALF_DOWN).doubleValue(),
                     new BigDecimal(polyFunc.value(solverPoly(coefs))).setScale(4, RoundingMode.HALF_DOWN).doubleValue()
             );
             data.add(newLine);
 
         }
-        setAxsisDiap(wb, wb.workSheets.get(0).wavelength.indexOf(st.getValue()), wb.workSheets.get(0).wavelength.indexOf(fin.getValue()));
+        setAxsisDiap(wb, wb.spectres.get(0).wavelength.indexOf(st.getValue()), wb.spectres.get(0).wavelength.indexOf(fin.getValue()));
         showTable();
         chartBox.getStylesheets().setAll("series-line.css");
         styleLineSeries();
