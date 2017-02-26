@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>GerNico</groupId>
   <artifactId>SPR_analizer</artifactId>
-  <version>V_1.2</version>
+  <version>V_1.3</version>
   <build>
     <sourceDirectory>src/java</sourceDirectory>
     <plugins>

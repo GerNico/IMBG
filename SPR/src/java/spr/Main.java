@@ -72,6 +72,7 @@ public class Main extends Application {
     private SimpleDoubleProperty rectX = new SimpleDoubleProperty();
     private SimpleDoubleProperty rectY = new SimpleDoubleProperty();
     double drift1;
+    RadioMenuItem rangeS,delPoint,fitS,analS;
 
 
     @Override
@@ -83,10 +84,10 @@ public class Main extends Application {
         Menu menu = new Menu("Режим");
 
         RadioMenuItem fileS = new RadioMenuItem("Вибір файлу");
-        RadioMenuItem rangeS = new RadioMenuItem("Вибір діапазону");
-        RadioMenuItem delPoint = new RadioMenuItem("Виколоти точку");
-        RadioMenuItem fitS = new RadioMenuItem("Область наближення");
-        RadioMenuItem analS = new RadioMenuItem("Аналітика");
+        rangeS = new RadioMenuItem("Вибір діапазону");
+        delPoint = new RadioMenuItem("Виколоти точку");
+        fitS = new RadioMenuItem("Область наближення");
+        analS = new RadioMenuItem("Аналітика");
 
         ToggleGroup group = new ToggleGroup();
         fileS.setToggleGroup(group);                fileS.setOnAction(event -> selectMode(4));
@@ -279,7 +280,12 @@ public class Main extends Application {
         scMain=new Scene(selectRange);
         currentStage.setScene(scMain);
         currentStage.setResizable(false);
+
+        rangeS.setDisable(true);delPoint.setDisable(true);fitS.setDisable(true);analS.setDisable(true);
+        onlyChart.setDisable(true);mainS.setDisable(true);setings.setDisable(true);
+
         currentStage.show();
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~кволі намагання зробити зум
 
         path = new Path();
@@ -478,6 +484,8 @@ public class Main extends Application {
                             currentStage.setHeight(StageHight2);
                             currentStage.setMinWidth(stageWight);
                             toExcel=new ExcelUsage(read);
+                            rangeS.setDisable(false);delPoint.setDisable(false);fitS.setDisable(false);analS.setDisable(false);
+                            onlyChart.setDisable(false);mainS.setDisable(false);setings.setDisable(false);
                         }
         }
     }
