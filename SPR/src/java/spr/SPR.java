@@ -16,6 +16,7 @@ class SPR {
         ArrayList<ArrayList<Double>> BigList= new ArrayList<>() ;
         Double[] timeMas;
         boolean isTemperature=false;
+        boolean isCorrection=false;
 
         SPR(String paths) throws IOException {
             Path pa = Paths.get(paths);

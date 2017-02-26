@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -59,6 +60,7 @@ public class Main extends Application {
     private Button saveButton;
     private Button fitButton;
     private final int StageHight2=500;
+    private final int stageWight=700;
     private TextField bookName;
     private ObservableList<String> xlsbooks;
     private ExcelUsage toExcel;
@@ -235,7 +237,7 @@ public class Main extends Application {
             try {
                 toExcel.fragToXLS(bookName.getText(),(int)scroll1.s.getValue(),cb.getValue(),
                         (int)scroll4.s.getValue(),(int)scroll5.s.getValue(),cb3.getValue(),
-                        selectCH.getValue(), cbUnits.getValue(),corection.isSelected(),drift1);
+                        selectCH.getValue(), cbUnits.getValue(),drift1,corection.isSelected());
             } catch (IOException e) {
                 showMessage(e.getMessage(),"error");
             }
@@ -276,7 +278,6 @@ public class Main extends Application {
         selectRange.getStylesheets().setAll("style.css");
         scMain=new Scene(selectRange);
         currentStage.setScene(scMain);
-        currentStage.setMinWidth(540);        currentStage.setMinHeight(120);
         currentStage.setResizable(false);
         currentStage.show();
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~кволі намагання зробити зум
@@ -408,6 +409,7 @@ public class Main extends Application {
                     read.makeData("working",selectCH.getValue()));
             currentStage.setScene(scMain);
             currentStage.setHeight(StageHight2);
+            currentStage.setMinWidth(stageWight);
         }
         if(val==1) {
             setings.getChildren().setAll(labelCH,selectCH,labelFit,cb2,fitButton);
@@ -418,6 +420,7 @@ public class Main extends Application {
             selectSLogic((int)scroll1.s.getValue(),cb2.getValue());
             currentStage.setHeight(StageHight2);
             currentStage.setScene(scMain);
+            currentStage.setMinWidth(stageWight);
         }
         if(val==2) {
             setings.getChildren().setAll(labelcb3,cb3,saveButton,angleUnits,cbUnits,correctionLabel,corection);
@@ -437,6 +440,7 @@ public class Main extends Application {
                     +"to"+RoundN(offerMax,1));
             currentStage.setHeight(StageHight2+110);
             currentStage.setScene(scMain);
+            currentStage.setMinWidth(stageWight);
         }
         if(val==3) {
             setings.getChildren().setAll(deleteButton);
@@ -447,6 +451,7 @@ public class Main extends Application {
             delSLogic((int)scroll1.s.getValue());
             currentStage.setHeight(StageHight2);
             currentStage.setScene(scMain);
+            currentStage.setMinWidth(stageWight);
         }
         if(val==4)  {
             final FileChooser fileOpener = new FileChooser();
@@ -471,6 +476,7 @@ public class Main extends Application {
                             setAxis(read,initS1,initCB);
                             currentStage.setScene(scMain);
                             currentStage.setHeight(StageHight2);
+                            currentStage.setMinWidth(stageWight);
                             toExcel=new ExcelUsage(read);
                         }
         }
@@ -488,13 +494,11 @@ public class Main extends Application {
 
         this.text = new Text(s_text);
         this.text0 = new Text(s_text0);
-        this.text0.setFont(new Font("monospaced", 14));
         this.text0.setTextAlignment(TextAlignment.LEFT);
-        this.text.setFont(new Font("monospaced", 14));
         this.text.setTextAlignment(TextAlignment.RIGHT);
         s = new ScrollBar();
         s.setOrientation(Orientation.HORIZONTAL);
-        s.setPrefWidth(400);
+        s.setPrefWidth(stageWight-75);
         s.setValue(value);
     }
         HBox asHbox() {
@@ -509,7 +513,7 @@ public class Main extends Application {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle(title);
-        stage.setMinWidth(250);
+        stage.setMinWidth(300);
         stage.setMinHeight(150);
         Label lbl = new Label();
         lbl.setText(message);

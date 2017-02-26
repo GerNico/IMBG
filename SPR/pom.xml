@@ -14,7 +14,7 @@
     </properties>
 
     <build>
-        <sourceDirectory>D:/IMBG/SPR/src/java</sourceDirectory>
+        <sourceDirectory>src/java</sourceDirectory>
         <plugins>
 
             <plugin>

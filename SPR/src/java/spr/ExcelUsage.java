@@ -19,6 +19,7 @@ class ExcelUsage {
     private String[] colomns;
     private ArrayList<ArrayList<Double>> table= new ArrayList<>() ;
     private Workbook wb;
+    private String[] Letters= {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
     ExcelUsage(SPR spr){
         if(spr.isTemperature)this.colomns= new String[]{"Час, хв", "черв. канал",
@@ -49,9 +50,9 @@ class ExcelUsage {
         ScatterChartData data = chart1.getChartDataFactory().createScatterChartData();
 
         ArrayList<Double> mas1 = new ArrayList<>();
-        for(int i=0;i<table.size();i++) mas1.add(table.get(i).get(1));
+        for (ArrayList<Double> aTable1 : table) mas1.add(aTable1.get(1));
         ArrayList<Double> mas2 = new ArrayList<>();
-        for(int i=0;i<table.size();i++) mas2.add(table.get(i).get(2));
+        for (ArrayList<Double> aTable : table) mas2.add(aTable.get(2));
 
         ValueAxis bottomAxis = chart1.getChartAxisFactory().createValueAxis(AxisPosition.BOTTOM);
         AxisAutoScale xRes= new AxisAutoScale(table.get(0).get(0),table.get(table.size()-1).get(0));
@@ -84,7 +85,7 @@ class ExcelUsage {
         outputStream.close();//закрий поток
     }
 
-    void fragToXLS (String sheetName, int s,int cb,int s2,int s3,int cb2,int can,String stringFactor, boolean corection, double k) throws IOException {
+    void fragToXLS (String sheetName, int s,int cb,int s2,int s3,int cb2,int can,String stringFactor, double k,boolean iscorrection) throws IOException {
         int factor;
         if(stringFactor.equals("deg"))factor=1;
         else if(stringFactor.equals("r.u."))factor=10000;
@@ -101,7 +102,7 @@ class ExcelUsage {
         }
 
         CellStyle style = this.wb.createCellStyle();
-        style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);;
+        style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
         style.setFillForegroundColor(IndexedColors.GREEN.getIndex());
 
         CellStyle style2 = this.wb.createCellStyle();
@@ -118,10 +119,7 @@ class ExcelUsage {
         start2=s3-s+1;  finish2=s3-s+cb2-1;
         int st1=start1+1,st2=start2+1,fin1=finish1+1,fin2=finish2+1;
 
-        for(int i=start1;i<=finish1;i++)sh.getRow(i).getCell(can).setCellStyle(style);
-        for(int i=start2;i<=finish2;i++)sh.getRow(i).getCell(can).setCellStyle(style);
-
-        if(corection==true){
+        if(iscorrection){
             k=k/1000;// conversion from mdeg/min
             firstRow.createCell(this.colomns.length).setCellValue("корекція");
             double b=sh.getRow(finish1).getCell(can).getNumericCellValue()-k*sh.getRow(finish1).getCell(0).getNumericCellValue();
@@ -129,50 +127,57 @@ class ExcelUsage {
                 sh.getRow(j).createCell(this.colomns.length).setCellValue(sh.getRow(j).getCell(can).getNumericCellValue()
                         +sh.getRow(finish1).getCell(can).getNumericCellValue()
                         -k*sh.getRow(j).getCell(0).getNumericCellValue()-b);
-            }}
+            }
+            for(int i=start1;i<=finish1;i++)sh.getRow(i).getCell(this.colomns.length).setCellStyle(style);
+            for(int i=start2;i<=finish2;i++)sh.getRow(i).getCell(this.colomns.length).setCellStyle(style);
+        }
+        else {
+            for(int i=start1;i<=finish1;i++)sh.getRow(i).getCell(can).setCellStyle(style);
+            for(int i=start2;i<=finish2;i++)sh.getRow(i).getCell(can).setCellStyle(style);
+        }
 
-        cellSt(sh,style2,0,6,"Осн.  канал");
-        cellSt(sh,style2,1,6,"M,      deg");
-        cellSt(sh,style2,1,7,"SD,    "+stringFactor);
+        cellStyle(sh,style2,0,6,"Осн.  канал");
+        cellStyle(sh,style2,1,6,"M,      deg");
+        cellStyle(sh,style2,1,7,"SD,    "+stringFactor);
 
-        cellSt(sh,style2,2,5,"Початок");
-        cellSt(sh,style2,3,5,"Кінець");
+        cellStyle(sh,style2,2,5,"Початок");
+        cellStyle(sh,style2,3,5,"Кінець");
 
-        cellIfF(sh,style2,can,2,6,"AVERAGE(B"+st1+":B"+fin1+")","AVERAGE(C"+st1+":C"+fin1+")");
-        cellIfF(sh,style2,can,3,6,"AVERAGE(B"+st2+":B"+fin2+")","AVERAGE(C"+st2+":C"+fin2+")");
-        cellIfF(sh,style2,can,2,7,"STDEV(B"+st1+":B"+fin1+")*"+factor,"STDEV(C"+st1+":C"+fin1+")*"+factor);
-        cellIfF(sh,style2,can,3,7,"STDEV(B"+st2+":B"+fin2+")*"+factor,"STDEV(C"+st2+":C"+fin2+")*"+factor);
+        cellIfF(sh,style2,can,2,6,"AVERAGE",st1,fin1,1,iscorrection);
+        cellIfF(sh,style2,can,3,6,"AVERAGE",st2,fin2,1,iscorrection);
+        cellIfF(sh,style2,can,2,7,"STDEV",st1,fin1,factor,iscorrection);
+        cellIfF(sh,style2,can,3,7,"STDEV",st2,fin2,factor,iscorrection);
 
-        cellSt(sh,style2,4,6,"Доп. канал");
-        cellSt(sh,style2,5,6,"M,      deg");
-        cellSt(sh,style2,5,7,"SD,   "+stringFactor);
+        cellStyle(sh,style2,4,6,"Доп. канал");
+        cellStyle(sh,style2,5,6,"M,      deg");
+        cellStyle(sh,style2,5,7,"SD,   "+stringFactor);
 
-        cellSt(sh,style2,6,5,"Початок");
-        cellSt(sh,style2,7,5,"Кінець ");
+        cellStyle(sh,style2,6,5,"Початок");
+        cellStyle(sh,style2,7,5,"Кінець ");
 
-        cellNIfF(sh,style2,can,6,6,"AVERAGE(B"+st1+":B"+fin1+")","AVERAGE(C"+st1+":C"+fin1+")");
-        cellNIfF(sh,style2,can,7,6,"AVERAGE(B"+st2+":B"+fin2+")","AVERAGE(C"+st2+":C"+fin2+")");
-        cellNIfF(sh,style2,can,6,7,"STDEV(B"+st1+":B"+fin1+")*"+factor,"STDEV(C"+st1+":C"+fin1+")*"+factor);
-        cellNIfF(sh,style2,can,7,7,"STDEV(B"+st2+":B"+fin2+")*"+factor,"STDEV(C"+st2+":C"+fin2+")*"+factor);
+        cellIfF(sh,style2,can,6,6,"AVERAGE",st1,fin1,1,iscorrection);
+        cellIfF(sh,style2,can,7,6,"AVERAGE",st2,fin2,1,iscorrection);
+        cellIfF(sh,style2,can,6,7,"STDEV",st1,fin1,factor,iscorrection);
+        cellIfF(sh,style2,can,7,7,"STDEV",st2,fin2,factor,iscorrection);
 
-        cellSt(sh,style2,9,5,"SignalM, "+stringFactor);
+        cellStyle(sh,style2,9,5,"SignalM, "+stringFactor);
         cellStF(sh,style2,9,6,"(G4-G3)*"+factor);
-        cellSt(sh,style2,9,7,"SignalSD, "+stringFactor);
+        cellStyle(sh,style2,9,7,"SignalSD, "+stringFactor);
         cellStF(sh,style2,9,8,"SQRT(H4*H4+H3*H3)");
         sh.getRow(9).getCell(5).setCellStyle(style);
         sh.getRow(9).getCell(6).setCellStyle(style);
 
-        cellSt(sh,style2,10,5,"ReferenceM, "+stringFactor);
+        cellStyle(sh,style2,10,5,"ReferenceM, "+stringFactor);
         cellStF(sh,style2,10,6,"(G8-G7)*"+factor);
-        cellSt(sh,style2,10,7,"ReferenceSD, "+stringFactor);
+        cellStyle(sh,style2,10,7,"ReferenceSD, "+stringFactor);
         cellStF(sh,style2,10,8,"SQRT(H8*H8+H7*H7)");
 
-        cellSt(sh,style2,11,5,"timeOfAveraging, min");
-        cellSt(sh,style2,11,7,"SignalDuration, min");
+        cellStyle(sh,style2,11,5,"timeOfAveraging, min");
+        cellStyle(sh,style2,11,7,"SignalDuration, min");
         cellStF(sh,style2,11,6,"A"+fin1+"-A"+st1);
         cellStF(sh,style2,11,8,"A"+st2+"-A"+fin1);
-        if(istemp){ cellSt(sh,style2,12,5,"T start, °C");
-                    cellSt(sh,style2,12,7,"T finish, °C");
+        if(istemp){ cellStyle(sh,style2,12,5,"T start, °C");
+                    cellStyle(sh,style2,12,7,"T finish, °C");
                     cellStF(sh,style2,12,6, "AVERAGE(D"+st1+":D"+fin1+")");
                     cellStF(sh,style2,12,8,"AVERAGE(D"+st2+":D"+fin2+")");}
 
@@ -194,7 +199,7 @@ class ExcelUsage {
         ArrayList<Double> mas = new ArrayList<>();
         for(int i=s;(i<s+cb)&&(i<table.size());i++) mas.add(table.get(i).get(can));
         double min,max;
-        if(corection==true){
+        if(iscorrection){
             ArrayList<Double> mas2 = new ArrayList<>();
                 for (int j=1;j<cb+1;j++) {mas2.add(sh.getRow(j).getCell(this.colomns.length).getNumericCellValue());}
             min=Math.min(Collections.min(mas),Collections.min(mas2));
@@ -218,7 +223,7 @@ class ExcelUsage {
 
         ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb, 0, 0));
         ChartDataSource<Number> ys1 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(1,cb,can,can));
-        if(corection==false){
+        if(!iscorrection){
         ChartDataSource<Number> x2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1, 0, 0));
         ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start1,finish1,can,can));
         ChartDataSource<Number> x3 = DataSources.fromNumericCellRange(sh, new CellRangeAddress(start2,finish2, 0, 0));
@@ -240,7 +245,7 @@ class ExcelUsage {
         /*                                            End of plot                                         */
     }
 
-    private void cellSt(Sheet sh,CellStyle st,int row,int cell,String s){
+    private void cellStyle(Sheet sh, CellStyle st, int row, int cell, String s){
         sh.getRow(row).createCell(cell).setCellValue(s);
         sh.getRow(row).getCell(cell).setCellStyle(st);
     }
@@ -248,14 +253,16 @@ class ExcelUsage {
         sh.getRow(row).createCell(cell).setCellFormula(s);
         sh.getRow(row).getCell(cell).setCellStyle(st);
     }
-    private void cellIfF(Sheet sh,CellStyle st,int can,int row,int cell,String s1,String s2){
-        if(can==1) sh.getRow(row).createCell(cell).setCellFormula(s1);
-        if(can==2) sh.getRow(row).createCell(cell).setCellFormula(s2);
-        sh.getRow(row).getCell(cell).setCellStyle(st);
-    }
-    private void cellNIfF(Sheet sh,CellStyle st,int can,int row,int cell,String s1,String s2){
-        if(can==2) sh.getRow(row).createCell(cell).setCellFormula(s1);
-        if(can==1) sh.getRow(row).createCell(cell).setCellFormula(s2);
+
+    @SuppressWarnings("Duplicates")
+    private void cellIfF(Sheet sh, CellStyle st, int can, int row, int cell, String function, int from, int to, double factor, boolean iscorrection){
+        String letter;
+        if (iscorrection)
+            letter=Letters[this.colomns.length];
+        else{
+            if(can==1) letter="B";
+            else letter="C";}
+        sh.getRow(row).createCell(cell).setCellFormula(factor+"*"+function+"("+letter+from+":"+letter+to+")");
         sh.getRow(row).getCell(cell).setCellStyle(st);
     }
 

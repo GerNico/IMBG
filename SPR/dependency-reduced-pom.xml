@@ -5,7 +5,7 @@
   <artifactId>SPR_analizer</artifactId>
   <version>V_1.2</version>
   <build>
-    <sourceDirectory>D:/IMBG/SPR/src/java</sourceDirectory>
+    <sourceDirectory>src/java</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
